@@ -1,0 +1,2860 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ibimoda Ibiza</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init('ml5tgZCgk_9E19RYJ');</script>
+<script src="https://js.stripe.com/v3/"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--sand:#f5f0fa;--sand-dark:#ede5f5;--ink:#1a1520;--terra:#c0399e;--terra-l:#e05ab8;--sea:#6b35a8;--ivory:#fdf9ff;--muted:#8a7898;--border:#ddd0ea}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--ivory);color:var(--ink);overflow-x:hidden}
+.announce{background:var(--ink);color:var(--sand);text-align:center;padding:.6rem;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase}
+.announce span{color:var(--terra-l);margin:0 .5rem}
+header{background:#fff;border-bottom:2px solid var(--border);position:sticky;top:0;z-index:200;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 2rem;height:78px}
+nav.left,nav.right{display:flex;gap:2rem;align-items:center}
+nav.right{justify-content:flex-end}
+nav a{text-decoration:none;color:var(--ink);font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;position:relative;padding-bottom:2px;transition:color .2s}
+nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--terra);transition:width .3s}
+nav a:hover::after{width:100%}
+nav a:hover{color:var(--terra)}
+.lang-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:.3rem .8rem;font-family:'Jost',sans-serif;font-size:.7rem;letter-spacing:.12em;cursor:pointer;color:var(--ink);transition:all .2s;display:flex;align-items:center;gap:.35rem}
+.lang-btn:hover{border-color:var(--terra);color:var(--terra)}
+.lang-btn .flag{font-size:.9rem}
+.header-icons{display:flex;gap:1.2rem;align-items:center}
+.icon-btn{background:none;border:none;cursor:pointer;font-size:1.1rem;color:var(--ink);position:relative;transition:color .2s;display:flex;align-items:center}
+.icon-btn:hover{color:var(--terra)}
+.cart-dot{position:absolute;top:-4px;right:-6px;background:var(--terra);color:#fff;width:16px;height:16px;border-radius:50%;font-size:.58rem;display:flex;align-items:center;justify-content:center;font-weight:600}
+.hero{height:calc(100vh - 106px);display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+.hero-left{background:var(--ink);display:flex;flex-direction:column;justify-content:flex-end;padding:4rem 3rem 5rem;position:relative;overflow:hidden}
+.hero-left::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%,rgba(192,57,158,.18) 0%,transparent 60%)}
+.hero-eyebrow{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--terra-l);margin-bottom:1.5rem;position:relative;display:flex;align-items:center;gap:1rem}
+.hero-eyebrow::before{content:'';width:2.5rem;height:1px;background:var(--terra-l)}
+.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,5vw,5rem);font-weight:400;line-height:1.05;color:var(--ivory);margin-bottom:2rem;position:relative}
+.hero-h1 em{font-style:italic;color:var(--terra-l);display:block}
+.hero-desc{color:rgba(250,248,244,.55);font-size:.88rem;line-height:1.8;max-width:380px;margin-bottom:3rem;font-weight:300;position:relative}
+.hero-cta{display:flex;gap:1rem;position:relative}
+.btn-terra{background:var(--terra);color:var(--ivory);padding:.9rem 2.2rem;border:none;font-family:'Jost',sans-serif;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .25s,transform .2s;text-decoration:none;display:inline-block}
+.btn-terra:hover{background:var(--terra-l);transform:translateY(-2px)}
+.btn-ghost{background:none;color:var(--ivory);padding:.9rem 2.2rem;border:1px solid rgba(250,248,244,.3);font-family:'Jost',sans-serif;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:border-color .25s;text-decoration:none;display:inline-block}
+.btn-ghost:hover{border-color:var(--ivory)}
+.hero-right{overflow:hidden}
+.hero-img-main{overflow:hidden;position:relative;height:100%}
+.hero-img-main img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.hero-img-main:hover img{transform:scale(1.05)}
+.marquee-strip{background:var(--terra);color:var(--ivory);padding:.9rem 0;overflow:hidden;white-space:nowrap}
+.marquee-inner{display:inline-flex;animation:marqueeScroll 20s linear infinite}
+.marquee-inner span{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;font-weight:300;padding:0 2.5rem}
+@keyframes marqueeScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.section-pad{padding:6rem 3rem}
+.section-eyebrow{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--terra);margin-bottom:.8rem;font-weight:300}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:400;line-height:1.1}
+.section-title em{font-style:italic;color:var(--muted)}
+.section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem}
+.see-all{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--ink);transition:color .2s,border-color .2s}
+.see-all:hover{color:var(--terra);border-color:var(--terra)}
+.gender-tabs{display:flex;border-bottom:2px solid var(--border);margin-bottom:2.5rem}
+.gender-tab{background:none;border:none;padding:.8rem 2.5rem;font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;cursor:pointer;color:var(--muted);position:relative;transition:color .25s}
+.gender-tab::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:var(--terra);transform:scaleX(0);transition:transform .3s}
+.gender-tab.active{color:var(--ink)}
+.gender-tab.active::after,.gender-tab:hover::after{transform:scaleX(1)}
+.cat-panel{display:none}
+.cat-panel.active{display:grid}
+.cat-grid{grid-template-columns:repeat(4,1fr);gap:1rem}
+.cat-card{position:relative;overflow:hidden;cursor:pointer;border-radius:3px;aspect-ratio:3/4;transition:box-shadow .3s}
+.cat-card:hover{box-shadow:0 16px 48px rgba(26,21,32,.18)}
+.cat-img{width:100%;height:100%;object-fit:cover;transition:transform .55s}
+.cat-card:hover .cat-img{transform:scale(1.07)}
+.cat-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,21,32,.75) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.4rem}
+.cat-name{font-family:'Playfair Display',serif;font-size:1.2rem;color:#fff;margin-bottom:.2rem}
+.cat-arrow{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.featured-section{padding:7rem 3rem;background:var(--sand)}
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.prod-card{background:var(--ivory);overflow:hidden;cursor:pointer;transition:box-shadow .3s}
+.prod-card:hover{box-shadow:0 20px 50px rgba(28,26,23,.12)}
+.prod-img-wrap{aspect-ratio:3/4;position:relative;overflow:hidden}
+.prod-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.prod-card:hover .prod-img-wrap img{transform:scale(1.05)}
+.prod-tag{position:absolute;top:.8rem;left:.8rem;background:var(--terra);color:#fff;font-size:.62rem;padding:.25rem .7rem;letter-spacing:.12em;text-transform:uppercase}
+.prod-quick{position:absolute;bottom:0;left:0;right:0;background:var(--ink);color:#fff;text-align:center;padding:.75rem;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;transform:translateY(100%);transition:transform .3s;cursor:pointer;border:none;width:100%;font-family:'Jost',sans-serif}
+.prod-card:hover .prod-quick{transform:translateY(0)}
+.prod-info{padding:1.2rem 1rem 1.4rem}
+.prod-brand{font-size:.62rem;color:var(--terra);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.3rem}
+.prod-name{font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:.4rem}
+.prod-desc{font-size:.78rem;color:var(--muted);line-height:1.6;margin-bottom:.6rem}
+.prod-price{font-size:.9rem;font-weight:500;color:var(--sea)}
+.prod-price s{color:var(--muted);font-weight:300;margin-right:.5rem;font-size:.82rem}
+.about-strip{background:var(--ink);color:#fff;padding:6rem 3rem}
+.about-content{max-width:680px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center}
+.about-eyebrow{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--terra-l);margin-bottom:1.5rem}
+.about-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:400;line-height:1.1;margin-bottom:1.5rem}
+.about-title em{font-style:italic;color:var(--terra-l)}
+.about-text{color:rgba(250,248,244,.6);line-height:1.8;font-size:.88rem;font-weight:300;max-width:520px;text-align:center;margin-bottom:1rem}
+.features-bar{background:var(--sand-dark);padding:3.5rem 3rem;display:grid;grid-template-columns:repeat(3,1fr)}
+.feature-item{display:flex;flex-direction:column;align-items:center;text-align:center;padding:2rem;border-right:1px solid var(--border)}
+.feature-item:last-child{border-right:none}
+.feature-icon{font-size:2rem;margin-bottom:1rem}
+.feature-title{font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:.5rem}
+.feature-desc{font-size:.8rem;color:var(--muted);line-height:1.7;font-weight:300;max-width:200px}
+.reviews-section{padding:6rem 3rem;background:var(--sand)}
+.rev-carousel{position:relative;overflow:hidden}
+.rev-track{display:flex;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.rev-slide{min-width:calc(50% - .6rem);margin-right:1.2rem;background:var(--ivory);padding:1.8rem;border-radius:3px;border:1px solid var(--border);flex-shrink:0}
+.rev-nav{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:2rem}
+.rev-btn{width:42px;height:42px;border-radius:50%;border:2px solid var(--border);background:var(--ivory);cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--ink)}
+.rev-btn:hover:not(:disabled){border-color:var(--terra);color:var(--terra)}
+.rev-btn:disabled{opacity:.3;cursor:not-allowed}
+.rev-dots{display:flex;gap:.5rem}
+.rev-dot{width:8px;height:8px;border-radius:50%;background:var(--border);cursor:pointer;transition:all .25s;border:none}
+.rev-dot.active{background:var(--terra);transform:scale(1.2)}
+.overlay-bg{display:none;position:fixed;inset:0;background:rgba(28,26,23,.5);z-index:499;backdrop-filter:blur(2px)}
+.overlay-bg.open{display:block}
+.cart-sidebar{position:fixed;top:0;right:0;width:420px;height:100vh;background:var(--ivory);z-index:500;transform:translateX(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column}
+.cart-sidebar.open{transform:translateX(0)}
+.cart-header{padding:2rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.cart-header h3{font-family:'Playfair Display',serif;font-weight:400;font-size:1.3rem}
+.close-btn{background:none;border:none;cursor:pointer;font-size:1.2rem;color:var(--muted)}
+.cart-body{flex:1;overflow-y:auto;padding:1.5rem}
+.cart-empty-msg{text-align:center;padding:3rem 2rem;color:var(--muted);font-family:'Playfair Display',serif;font-style:italic}
+.cart-item-row{display:grid;grid-template-columns:80px 1fr auto;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--border);align-items:center}
+.cart-item-thumb{width:80px;height:100px;overflow:hidden;border-radius:2px}
+.cart-item-thumb img{width:100%;height:100%;object-fit:cover}
+.item-brand{font-size:.62rem;color:var(--terra);letter-spacing:.1em;text-transform:uppercase}
+.item-name{font-family:'Playfair Display',serif;font-size:.95rem;margin:.2rem 0}
+.item-price{font-size:.85rem;color:var(--sea);font-weight:500}
+.cart-qty{display:flex;flex-direction:column;align-items:center;gap:.3rem}
+.qty-btn{width:24px;height:24px;border:1px solid var(--border);background:none;cursor:pointer;font-size:.9rem}
+.qty-btn:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.cart-footer{padding:1.5rem 2rem;border-top:1px solid var(--border)}
+.cart-total-row{display:flex;justify-content:space-between;margin-bottom:1rem}
+.cart-total-label{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.cart-total-amount{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--terra)}
+.btn-checkout{display:block;width:100%;background:var(--ink);color:#fff;text-align:center;padding:1rem;border:none;font-family:'Jost',sans-serif;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .2s;margin-bottom:.5rem}
+.btn-checkout:hover{background:var(--terra)}
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(26,21,32,.65);z-index:600;backdrop-filter:blur(4px);align-items:flex-start;justify-content:center;overflow-y:auto;padding:1rem}
+.modal-bg.open{display:flex}
+.modal{background:var(--ivory);width:100%;max-width:530px;max-height:90vh;overflow-y:auto;border-radius:4px;padding:2.5rem}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem}
+.modal-head h2{font-family:'Playfair Display',serif;font-weight:400;font-size:1.5rem}
+.order-summary{background:var(--sand);padding:1.2rem;border-radius:3px;margin-bottom:1.5rem}
+.order-summary h4{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem}
+.order-item{display:flex;justify-content:space-between;font-size:.83rem;margin-bottom:.4rem}
+.order-total{display:flex;justify-content:space-between;font-size:.95rem;font-weight:500;margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--border)}
+.form-row{margin-bottom:1.2rem}
+.form-row label{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.form-row input{width:100%;padding:.8rem 1rem;border:1px solid var(--border);background:#fff;font-family:'Jost',sans-serif;font-size:.9rem;color:var(--ink);outline:none;transition:border-color .2s;border-radius:2px}
+.form-row input:focus{border-color:var(--terra)}
+.form-2col{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.pay-success{text-align:center;padding:2rem}
+.pay-success .check{font-size:3.5rem;margin-bottom:1rem}
+.pay-success h3{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:400;margin-bottom:1rem}
+.pay-success p{color:var(--muted);font-size:.88rem;line-height:1.8}
+.adm-overlay{display:none;position:fixed;inset:0;background:rgba(26,21,32,.72);z-index:800;backdrop-filter:blur(4px);overflow-y:auto;padding:1.5rem}
+.adm-overlay.open{display:block}
+.adm-box{background:var(--ivory);max-width:720px;margin:0 auto 6rem auto;border-radius:4px;padding:2.5rem}
+.adm-tabs{display:flex;border-bottom:2px solid var(--border);margin-bottom:2rem;flex-wrap:wrap}
+.adm-tab{background:none;border:none;padding:.7rem 1.1rem;font-family:'Playfair Display',serif;font-size:.9rem;font-style:italic;cursor:pointer;color:var(--muted);position:relative;white-space:nowrap}
+.adm-tab::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:var(--terra);transform:scaleX(0);transition:transform .25s}
+.adm-tab.active{color:var(--ink)}
+.adm-tab.active::after{transform:scaleX(1)}
+.adm-pane{display:none}
+.adm-pane.active{display:block}
+.fz{border:2px dashed var(--border);border-radius:3px;padding:1.4rem;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;position:relative}
+.fz:hover,.fz.drag{border-color:var(--terra);background:rgba(192,57,158,.04)}
+.fz input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.fz-thumb{width:100%;height:110px;object-fit:cover;border-radius:2px;margin-bottom:.5rem;display:none}
+.fz-icon{font-size:1.8rem;opacity:.35;margin-bottom:.4rem}
+.fz-label{font-size:.78rem;color:var(--muted)}
+.fz-label span{color:var(--terra);font-weight:500}
+.fld{margin-bottom:1rem}
+.fld label{display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
+.fld input,.fld select,.fld textarea{width:100%;padding:.75rem 1rem;border:1px solid var(--border);font-family:'Jost',sans-serif;font-size:.88rem;color:var(--ink);outline:none;border-radius:2px;background:#fff;transition:border-color .2s}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--terra)}
+.fld textarea{resize:vertical;min-height:80px;line-height:1.6}
+.fld2{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.cover-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.cover-item{background:var(--sand);border-radius:3px;padding:.8rem}
+.cover-item-label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.txt-block{background:var(--sand);padding:1.2rem;border-radius:3px;margin-bottom:1rem;border:1px solid var(--border)}
+.txt-block-label{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem}
+.txt-apply{background:var(--terra);color:#fff;border:none;padding:.6rem 1.4rem;font-family:'Jost',sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border-radius:2px;margin-top:.5rem}
+.wa-btn{position:fixed;bottom:2rem;right:2rem;z-index:999;background:#25d366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);animation:waPulse 2.5s ease-in-out infinite}
+.wa-btn:hover{transform:scale(1.1);animation:none}
+.wa-btn svg{width:30px;height:30px;fill:#fff}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 32px rgba(37,211,102,.7)}}
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ink);color:#fff;padding:1rem 1.8rem;font-size:.8rem;letter-spacing:.05em;z-index:1100;opacity:0;transition:all .4s cubic-bezier(.16,1,.3,1);border-left:3px solid var(--terra);display:flex;align-items:center;gap:.2rem;border-radius:2px;box-shadow:0 4px 20px rgba(0,0,0,.25);min-width:240px}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.contact-bar{background:var(--terra);color:#fff;padding:1.2rem 3rem;display:flex;align-items:center;justify-content:center;gap:4rem;flex-wrap:wrap}
+.contact-item{display:flex;align-items:center;gap:.6rem;font-size:.78rem;font-weight:300;text-decoration:none;color:#fff}
+footer{background:var(--ink);color:#fff;padding:4rem 3rem 2rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(250,248,244,.1)}
+.footer-tagline{color:rgba(250,248,244,.45);font-size:.82rem;line-height:1.7;font-weight:300;margin-top:.8rem;max-width:240px}
+.footer-social{display:flex;gap:.8rem;margin-top:1.5rem}
+.social-btn{width:36px;height:36px;border:1px solid rgba(250,248,244,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none;color:#fff;cursor:pointer;transition:all .2s}
+.social-btn:hover{border-color:var(--terra-l);background:rgba(192,57,158,.2)}
+.footer-col h4{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--terra-l);margin-bottom:1.2rem}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:.6rem}
+.footer-col ul a{text-decoration:none;color:rgba(250,248,244,.5);font-size:.82rem;font-weight:300;transition:color .2s}
+.footer-col ul a:hover{color:#fff}
+.footer-plain{color:rgba(250,248,244,.5);font-size:.82rem;font-weight:300}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center}
+.footer-legal{font-size:.72rem;color:rgba(250,248,244,.3)}
+.footer-legal a{color:rgba(250,248,244,.3);text-decoration:none;margin-left:1.5rem}
+.login-overlay{display:none;position:fixed;inset:0;background:rgba(26,21,32,.78);z-index:900;backdrop-filter:blur(4px);align-items:center;justify-content:center}
+.login-overlay.open{display:flex}
+.login-box{background:var(--ivory);padding:2.5rem;border-radius:4px;width:320px;text-align:center}
+@media(max-width:900px){
+  header{grid-template-columns:auto 1fr auto;padding:0 1rem}
+  nav.left{display:none}
+  .hero{grid-template-columns:1fr;height:auto}
+  .hero-right{display:none}
+  .hero-left{padding:3rem 1.5rem 4rem}
+  .cat-grid{grid-template-columns:1fr 1fr!important}
+  .products-grid{grid-template-columns:1fr 1fr}
+  .features-bar{grid-template-columns:1fr}
+  .feature-item{border-right:none;border-bottom:1px solid var(--border)}
+  .section-pad,.featured-section,.reviews-section{padding:4rem 1.5rem}
+  .contact-bar{flex-direction:column;gap:1rem;padding:1.5rem}
+  .cart-sidebar{width:100%}
+  .modal,.adm-box{margin:1rem;padding:1.5rem}
+  .rev-slide{min-width:calc(100% - .6rem)}
+  .cover-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:768px){
+  .hero{display:block;height:auto!important}
+  .hero-right{display:block;width:100%;height:90vw;max-height:480px}
+  .hero-img-main{display:block;width:100%;height:90vw;max-height:480px;overflow:hidden;position:relative}
+  .hero-img-main img{width:100%;height:100%;object-fit:cover;display:block;position:static}
+  .hero-left{display:flex;width:100%;box-sizing:border-box;padding:2.5rem 1.5rem 3rem;justify-content:flex-start;background:var(--ink)}
+  .hero-h1{font-size:clamp(2rem,9vw,3rem)}
+  .hero-cta{flex-wrap:wrap}
+  .hero-h1{font-size:clamp(2rem,8vw,3.5rem)}
+  .products-grid{grid-template-columns:repeat(2,1fr)!important}
+  .cat-grid{grid-template-columns:repeat(2,1fr)!important}
+  header{grid-template-columns:1fr auto 1fr;padding:0 1rem;height:60px}
+  nav.left{display:none}
+  nav.right{display:flex;gap:.5rem;align-items:center}
+  nav.right a[data-t]{display:none}
+  .lang-btn{display:none}
+  .header-icons{display:flex;gap:.8rem}
+  #prod-modal .modal-grid-inner{grid-template-columns:1fr!important}
+  .features-bar{grid-template-columns:1fr!important}
+  .feature-item{border-right:none!important;border-bottom:1px solid var(--border)}
+  .section-pad{padding:3rem 1.2rem}
+  .featured-section{padding:3rem 1.2rem}
+  .about-strip{padding:3rem 1.2rem}
+  .cart-sidebar{width:100vw!important}
+  .modal{padding:1.5rem}
+  #pay-modal .modal{max-width:100%;margin:1rem}
+  .form-2col{grid-template-columns:1fr!important}
+  .section-header{flex-direction:column;align-items:flex-start;gap:1rem}
+  .about-content{padding:0 .5rem}
+  .footer-grid{grid-template-columns:1fr!important}
+  .contact-bar{flex-direction:column;gap:.5rem;padding:.8rem 1rem}
+}
+</style>
+</head>
+<body>
+
+<a href="#" id="wa-link" class="wa-btn" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<div class="overlay-bg" id="overlay-bg" onclick="closeCart()"></div>
+
+<!-- CART -->
+<div class="cart-sidebar" id="cart-sidebar">
+  <div class="cart-header"><h3 data-t="cartTitle">Tu selección</h3><button class="close-btn" onclick="closeCart()">✕</button></div>
+  <div class="cart-body" id="cart-body"><div class="cart-empty-msg" data-t="cartEmpty">Tu carrito está vacío</div></div>
+  <div class="cart-footer" id="cart-footer" style="display:none">
+    <div style="margin-bottom:.8rem">
+      <div class="cart-total-row" style="margin-bottom:.3rem">
+        <span class="cart-total-label">Subtotal</span>
+        <span style="font-size:.9rem;color:var(--ink)" id="cart-subtotal">€0</span>
+      </div>
+      <div class="cart-total-row" style="margin-bottom:.6rem">
+        <span class="cart-total-label">Envío</span>
+        <span style="font-size:.9rem" id="cart-shipping">€0</span>
+      </div>
+      <div style="border-top:1px solid var(--border);padding-top:.6rem" class="cart-total-row">
+        <span class="cart-total-label" data-t="cartEstimate">Total</span>
+        <span class="cart-total-amount" id="cart-total">€0</span>
+      </div>
+    </div>
+    <button class="btn-checkout" onclick="openPayment()" data-t="cartPay">🔒 Pagar ahora</button>
+    <button class="btn-checkout" style="background:transparent;color:var(--ink);border:1px solid var(--border)" onclick="closeCart()" data-t="cartKeep">Seguir comprando</button>
+  </div>
+</div>
+
+<!-- SEARCH MODAL -->
+<div class="modal-bg" id="search-modal" onclick="if(event.target===this)closeSearch()" style="align-items:flex-start;padding-top:100px">
+  <div style="background:var(--ivory);width:100%;max-width:560px;border-radius:4px;overflow:hidden;box-shadow:0 24px 80px rgba(26,21,32,.25)">
+    <div style="display:flex;align-items:center;gap:.8rem;padding:1rem 1.2rem;border-bottom:1px solid var(--border)">
+      <span style="font-size:1.1rem;color:var(--muted)">🔍</span>
+      <input id="search-inp" type="text" data-t-placeholder="searchPlaceholder" placeholder="Busca vestidos, trajes, camisas…"
+        style="flex:1;border:none;background:none;font-family:'Jost',sans-serif;font-size:1rem;color:var(--ink);outline:none"
+        oninput="doSearch(this.value)" onkeydown="searchKey(event)">
+      <button onclick="closeSearch()" style="background:none;border:none;cursor:pointer;font-size:1rem;color:var(--muted)">✕</button>
+    </div>
+    <div id="search-results" style="max-height:380px;overflow-y:auto;padding:.5rem 0"></div>
+  </div>
+</div>
+
+<!-- PAYMENT -->
+<div class="modal-bg" id="pay-modal">
+  <div class="modal">
+    <div id="pay-form">
+      <div class="modal-head"><h2 data-t="payTitle">Finalizar compra</h2><button class="close-btn" onclick="closePayment()">✕</button></div>
+      <div class="order-summary" id="order-summary"></div>
+      <div class="form-row"><label data-t="payName">Nombre completo</label><input id="p-name" type="text" placeholder="Ana García Martínez"></div>
+      <div class="form-row"><label>Email</label><input id="p-email" type="email" placeholder="ana@ejemplo.com"></div>
+      <div class="form-row"><label data-t="payAddr">Dirección</label><input id="p-addr" type="text"></div>
+      <div class="form-2col">
+        <div class="form-row"><label data-t="payCity">Ciudad</label><input id="p-city" type="text" placeholder="Ibiza"></div>
+        <div class="form-row"><label>C.P.</label><input id="p-cp" type="text" placeholder="07820" maxlength="5"></div>
+      </div>
+
+      <button id="pay-submit-btn" class="btn-terra" style="width:100%;text-align:center;padding:1.1rem;margin-top:.5rem" onclick="handleStripePayment()" data-t="payConfirm">
+        🔒 Confirmar pago
+      </button>
+      <div style="display:flex;align-items:center;justify-content:center;gap:.4rem;font-size:.72rem;color:var(--muted);margin-top:.8rem" data-t="paySecure">🔒 Pago 100% seguro — SSL encriptado</div>
+    </div>
+    <div id="pay-ok" class="pay-success" style="display:none">
+      <div class="check">✅</div>
+      <h3 data-t="payOkTitle">¡Pedido confirmado!</h3>
+      <p id="pay-ok-msg"></p>
+      <button class="btn-terra" style="margin-top:2rem;padding:.9rem 2.5rem" onclick="closePayment()" data-t="cartKeep">Seguir comprando</button>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div class="login-overlay" id="login-overlay">
+  <div class="login-box">
+    <div style="font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:1.5rem" data-t="adminTitle">Panel de administrador</div>
+    <input id="adm-pass-inp" type="password" placeholder="Contraseña"
+      style="width:100%;padding:.8rem 1rem;border:1px solid var(--border);font-family:'Jost',sans-serif;font-size:.9rem;outline:none;border-radius:2px;margin-bottom:1rem"
+      onkeydown="if(event.key==='Enter')checkPass()">
+    <button onclick="checkPass()" style="width:100%;background:var(--terra);color:#fff;border:none;padding:.9rem;font-family:'Jost',sans-serif;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;border-radius:2px" data-t="adminEnter">Entrar</button>
+    <button onclick="document.getElementById('login-overlay').classList.remove('open')" style="margin-top:.8rem;background:none;border:none;font-size:.78rem;color:var(--muted);cursor:pointer" data-t="adminCancel">Cancelar</button>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div class="adm-overlay" id="adm-overlay">
+  <div class="adm-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+      <div>
+        <div style="font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--terra);margin-bottom:.2rem">Panel privado</div>
+        <h2 style="font-family:'Playfair Display',serif;font-weight:400;font-size:1.4rem">Administración</h2>
+      </div>
+      <button onclick="closeAdm()" style="background:none;border:none;cursor:pointer;font-size:1.3rem;color:var(--muted)">✕</button>
+    </div>
+    <div class="adm-tabs">
+      <button class="adm-tab active" onclick="switchAdmTab('productos',this)">📦 Productos</button>
+      <button class="adm-tab" onclick="switchAdmTab('categorias',this)">📂 Categorías</button>
+      <button class="adm-tab" onclick="switchAdmTab('portadas',this)">🖼 Portadas</button>
+      <button class="adm-tab" onclick="switchAdmTab('logo',this)">🏷 Logo</button>
+      <button class="adm-tab" onclick="switchAdmTab('pedidos',this)">📬 Pedidos</button>
+      <button class="adm-tab" onclick="switchAdmTab('textos',this)">✏️ Textos</button>
+    </div>
+
+    <!-- PRODUCTOS -->
+    <div class="adm-pane active" id="adm-productos">
+      <div class="fld">
+        <label>URL de la foto del producto</label>
+        <div style="display:flex;gap:.4rem;align-items:center">
+          <input type="text" id="url-prod" placeholder="https://res.cloudinary.com/..."
+            style="flex:1;padding:.65rem .8rem;border:1px solid var(--border);font-family:'Jost',sans-serif;font-size:.78rem;border-radius:2px;outline:none;color:var(--ink)"
+            onfocus="this.style.borderColor='var(--terra)'" onblur="this.style.borderColor='var(--border)'"
+            oninput="previewProdUrl(this.value)">
+        </div>
+        <div id="prod-url-preview" style="display:none;margin-top:.5rem;border-radius:2px;overflow:hidden;height:100px">
+          <img id="prod-url-prev-img" style="width:100%;height:100%;object-fit:cover" alt="">
+        </div>
+      </div>
+      <div class="fld"><label>Nombre</label><input id="adm-name" type="text" placeholder="Vestido Flores Primavera"></div>
+      <div class="fld2">
+        <div class="fld"><label>Marca</label><select id="adm-brand"><option>Sonia Peña</option><option>Carla Ruiz</option><option>Paz Torras</option><option>Sissus</option><option>Christian Koelhert</option><option>Lino Clemente</option><option>Otra</option></select></div>
+        <div class="fld"><label>Categoría</label><select id="adm-cat"><option value="mujer">Mujer — Vestidos</option><option value="mujer">Mujer — Monos</option><option value="mujer">Mujer — Trajes</option><option value="mujer">Mujer — Pantalones</option><option value="hombre">Hombre — Trajes</option><option value="hombre">Hombre — Camisas</option><option value="hombre">Hombre — Chaquetas</option></select></div>
+      </div>
+      <div class="fld2">
+        <div class="fld"><label>Precio (€)</label><input id="adm-price" type="number" placeholder="0.00" min="0" step="0.01"></div>
+        <div class="fld"><label>Precio anterior</label><input id="adm-old" type="number" min="0" step="0.01"></div>
+      </div>
+      <div class="fld2">
+        <div class="fld"><label>Etiqueta</label><select id="adm-tag"><option value="">Sin etiqueta</option><option>Nuevo</option><option>Destacado</option><option>Oferta</option><option>Últimas unidades</option></select></div>
+        <div class="fld" style="display:flex;align-items:center;gap:.6rem;padding-top:1.4rem">
+          <input type="checkbox" id="adm-feat" style="width:16px;height:16px;accent-color:var(--terra);cursor:pointer">
+          <label for="adm-feat" style="font-size:.83rem;cursor:pointer">⭐ Destacar en portada</label>
+        </div>
+      </div>
+      <div class="fld"><label>Descripción</label><textarea id="adm-desc"></textarea></div>
+      <button onclick="addProduct()" style="width:100%;background:var(--terra);color:#fff;border:none;padding:1rem;font-family:'Jost',sans-serif;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;border-radius:2px">+ Añadir producto</button>
+      <div style="margin-top:2rem;border-top:1px solid var(--border);padding-top:1.5rem">
+        <div style="font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem">Productos añadidos</div>
+        <div id="adm-prod-list"></div>
+      </div>
+
+      <!-- GOOGLE SHEETS SYNC PANEL -->
+      <div style="margin-top:2rem;background:linear-gradient(135deg,rgba(107,53,168,.08),rgba(192,57,158,.08));border:1px solid var(--border);border-radius:4px;padding:1.4rem">
+        <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.8rem">
+          <span style="font-size:1.2rem">📊</span>
+          <div style="font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sea);font-weight:500">Google Sheets conectado</div>
+        </div>
+        <p style="font-size:.8rem;color:var(--muted);line-height:1.7;margin-bottom:1rem">
+          Los productos se cargan automáticamente desde tu hoja de cálculo pública. La tienda se sincroniza cada 5 minutos. Añade filas en Sheets y pulsa <strong>Sincronizar ahora</strong> para aplicarlas de inmediato.
+        </p>
+        <div style="background:var(--sand);border-radius:3px;padding:.9rem 1rem;margin-bottom:1rem;font-size:.76rem;line-height:2;border:1px solid var(--border)">
+          <strong style="display:block;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:.6rem">Columnas esperadas en la hoja</strong>
+          <code style="font-size:.72rem;color:var(--ink)">nombre</code> &middot; <code style="font-size:.72rem;color:var(--ink)">precio</code> &middot; <code style="font-size:.72rem;color:var(--muted)">marca</code> &middot; <code style="font-size:.72rem;color:var(--muted)">descripcion</code> &middot; <code style="font-size:.72rem;color:var(--muted)">etiqueta</code> &middot; <code style="font-size:.72rem;color:var(--muted)">imagen</code> &middot; <code style="font-size:.72rem;color:var(--ink)">destacado</code> (si/no) &middot; <code style="font-size:.72rem;color:var(--muted)">activo</code> (si/no)
+          <br><strong style="font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra)">Columna categoria — valores exactos:</strong><br>
+          <span style="color:var(--sea)">Mujer:</span> <code style="font-size:.72rem">vestidos</code> &middot; <code style="font-size:.72rem">monos</code> &middot; <code style="font-size:.72rem">trajes</code> &middot; <code style="font-size:.72rem">pantalones</code><br>
+          <span style="color:var(--sea)">Hombre:</span> <code style="font-size:.72rem">traje hombre</code> &middot; <code style="font-size:.72rem">camisas</code> &middot; <code style="font-size:.72rem">calzado</code> &middot; <code style="font-size:.72rem">corbatas</code>
+        </div>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+          <button onclick="reloadFromSheets()"
+            style="flex:1;min-width:150px;background:var(--sea);color:#fff;border:none;padding:.85rem 1.2rem;font-family:'Jost',sans-serif;font-size:.73rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;border-radius:2px">
+            &#x21BB; Sincronizar ahora
+          </button>
+          <a href="https://docs.google.com/spreadsheets/d/1vwzRap6X5Cv-ISY64IItUrm8Vi35SeoqaO-MJMQPw30" target="_blank"
+            style="flex:1;min-width:150px;background:none;color:var(--sea);border:1px solid var(--sea);padding:.85rem 1.2rem;font-family:'Jost',sans-serif;font-size:.73rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;border-radius:2px;text-decoration:none;text-align:center;display:inline-block">
+            &#x1F4CB; Abrir Google Sheets
+          </a>
+        </div>
+
+        <!-- DIAGNÓSTICO -->
+        <div id="sheets-diagnostic" style="display:none;margin-top:1rem;background:#fff3cd;border:1px solid #ffc107;border-radius:3px;padding:1rem">
+          <div style="font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:#856404;margin-bottom:.5rem;font-weight:600">&#x26A0;&#xFE0F; Diagnóstico Google Sheets</div>
+          <pre id="sheets-diag-msg" style="font-size:.78rem;color:#664d03;white-space:pre-wrap;line-height:1.7;font-family:monospace;margin:0"></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORÍAS -->
+    <div class="adm-pane" id="adm-categorias">
+      <div style="background:var(--sand);padding:1.2rem;border-radius:3px;margin-bottom:1.5rem;border:1px solid var(--border)">
+        <div style="font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem">Nueva categoría</div>
+        <div class="fld2">
+          <div class="fld"><label>Nombre</label><input id="cat-name-inp" type="text"></div>
+          <div class="fld"><label>Sección</label><select id="cat-gender-inp"><option value="mujer">Mujer</option><option value="hombre">Hombre</option></select></div>
+        </div>
+        <!-- Foto o URL categoría -->
+        <div class="fld" style="margin-bottom:.5rem"><label>URL de la foto (opcional)</label>
+          <input type="text" id="url-newcat" placeholder="https://res.cloudinary.com/..."
+            style="width:100%;padding:.65rem .8rem;border:1px solid var(--border);font-family:'Jost',sans-serif;font-size:.78rem;border-radius:2px;outline:none;color:var(--ink)"
+            onfocus="this.style.borderColor='var(--terra)'" onblur="this.style.borderColor='var(--border)'"
+            oninput="previewCatUrl(this.value)">
+          <div id="newcat-url-preview" style="display:none;margin-top:.5rem;border-radius:2px;overflow:hidden;height:80px">
+            <img id="newcat-url-prev-img" style="width:100%;height:100%;object-fit:cover" alt="">
+          </div>
+        </div>
+        <button onclick="addCategory()" style="width:100%;background:var(--terra);color:#fff;border:none;padding:.85rem;font-family:'Jost',sans-serif;font-size:.73rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;border-radius:2px">+ Añadir categoría</button>
+      </div>
+      <div style="font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">Categorías actuales</div>
+      <div id="adm-cat-list"></div>
+    </div>
+
+    <!-- PORTADAS -->
+    <div class="adm-pane" id="adm-portadas">
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.7">
+        Sube una foto <strong>o pega una URL</strong> (de Cloudinary, Google Drive, etc.) para cambiar cualquier imagen. Las URLs quedan fijas aunque recargues.
+      </p>
+      <div class="cover-grid" id="cover-grid"></div>
+    </div>
+
+    <!-- LOGO -->
+    <div class="adm-pane" id="adm-logo">
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.7">Pega la URL del logo (desde Cloudinary u otro servicio). PNG transparente recomendado.</p>
+      <div class="fld">
+        <label>URL del logo</label>
+        <div style="display:flex;gap:.4rem;align-items:center">
+          <input type="text" id="url-logo" placeholder="https://res.cloudinary.com/djudfepgz/..."
+            style="flex:1;padding:.65rem .8rem;border:1px solid var(--border);font-family:'Jost',sans-serif;font-size:.78rem;border-radius:2px;outline:none;color:var(--ink)"
+            onfocus="this.style.borderColor='var(--terra)'" onblur="this.style.borderColor='var(--border)'"
+            oninput="previewLogoUrl(this.value)">
+          <button onclick="applyLogoUrl()"
+            style="background:var(--terra);color:#fff;border:none;padding:.65rem 1.2rem;font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border-radius:2px;white-space:nowrap">
+            ✓ Aplicar
+          </button>
+        </div>
+      </div>
+      <!-- Preview -->
+      <div id="logo-url-preview" style="display:none;margin-top:.8rem;background:var(--sand);border-radius:3px;padding:1.2rem;text-align:center;border:1px solid var(--border)">
+        <div style="font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">Vista previa</div>
+        <div style="background:#fff;padding:.8rem 2rem;border-bottom:2px solid var(--border);display:inline-flex;align-items:center;border-radius:2px">
+          <img id="logo-url-prev-img" style="height:48px;width:auto;object-fit:contain" alt="Logo preview">
+        </div>
+      </div>
+      <button onclick="removeLogo()" style="width:100%;background:none;color:var(--terra);border:1px solid var(--terra);padding:.75rem;font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border-radius:2px;margin-top:1rem">✕ Volver al logo de texto</button>
+    </div>
+
+    <!-- PEDIDOS -->
+    <div class="adm-pane" id="adm-pedidos">
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.7">
+        Aquí aparecen los pedidos recibidos. Introduce el número de seguimiento de Correos y envíaselo al cliente.
+      </p>
+      <div id="adm-orders-list">
+        <div style="text-align:center;padding:3rem;color:var(--muted);font-family:'Playfair Display',serif;font-style:italic">
+          Aún no hay pedidos recibidos
+        </div>
+      </div>
+    </div>
+
+    <!-- TEXTOS -->
+    <div class="adm-pane" id="adm-textos">
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.7">Edita todos los textos visibles. Pulsa <strong>Aplicar</strong> en cada sección.</p>
+      <div class="txt-block"><div class="txt-block-label">📢 Anuncio superior</div><div class="fld"><label>Texto</label><input id="txt-announce" type="text" value="Envíos a toda España · Recogida gratuita en tienda"></div><button class="txt-apply" onclick="applyAnuncio()">✓ Aplicar</button></div>
+      <div class="txt-block"><div class="txt-block-label">🦸 Hero</div>
+        <div class="fld"><label>Subtítulo</label><input id="txt-hero-eye" type="text" value="Nueva Colección 2026"></div>
+        <div class="fld2"><div class="fld"><label>Línea 1</label><input id="txt-hero-l1" type="text" value="Moda que"></div><div class="fld"><label>Línea 2</label><input id="txt-hero-l2" type="text" value="nace en"></div></div>
+        <div class="fld"><label>Línea 3 (cursiva)</label><input id="txt-hero-l3" type="text" value="Ibiza"></div>
+        <div class="fld"><label>Descripción</label><textarea id="txt-hero-desc">Ropa elegante para ocasiones especiales. Desde Sant Antoni, llevamos la esencia mediterránea a tu armario.</textarea></div>
+        <div class="fld2"><div class="fld"><label>Botón 1</label><input id="txt-hero-btn1" type="text" value="Ver colecciones"></div><div class="fld"><label>Botón 2</label><input id="txt-hero-btn2" type="text" value="Nuestra historia"></div></div>
+        <button class="txt-apply" onclick="applyHero()">✓ Aplicar</button></div>
+      <div class="txt-block"><div class="txt-block-label">📂 Categorías</div>
+        <div class="fld"><label>Subtítulo</label><input id="txt-cat-eye" type="text" value="Explora por categoría"></div>
+        <div class="fld2"><div class="fld"><label>Título</label><input id="txt-cat-t1" type="text" value="¿Qué estás"></div><div class="fld"><label>Cursiva</label><input id="txt-cat-t2" type="text" value="buscando?"></div></div>
+        <button class="txt-apply" onclick="applyCat()">✓ Aplicar</button></div>
+      <div class="txt-block"><div class="txt-block-label">⭐ Productos</div>
+        <div class="fld"><label>Subtítulo</label><input id="txt-prod-eye" type="text" value="Selección editorial"></div>
+        <div class="fld2"><div class="fld"><label>Título</label><input id="txt-prod-t1" type="text" value="Piezas"></div><div class="fld"><label>Cursiva</label><input id="txt-prod-t2" type="text" value="destacadas"></div></div>
+        <button class="txt-apply" onclick="applyProd()">✓ Aplicar</button></div>
+      <div class="txt-block"><div class="txt-block-label">🌿 Nosotros</div>
+        <div class="fld"><label>Subtítulo</label><input id="txt-nos-eye" type="text" value="Nuestra historia"></div>
+        <div class="fld2"><div class="fld"><label>Título</label><input id="txt-nos-t1" type="text" value="Moda con"></div><div class="fld"><label>Cursiva</label><input id="txt-nos-t2" type="text" value="alma ibicenca"></div></div>
+        <div class="fld"><label>Párrafo 1</label><textarea id="txt-nos-p1">En Ibimoda Ibiza encontrarás moda elegante para cada ocasión. Desde Sant Antoni de Portmany, seleccionamos las mejores colecciones con tejidos de alta calidad.</textarea></div>
+        <div class="fld"><label>Párrafo 2</label><textarea id="txt-nos-p2">Enviamos a toda la Península. Visítanos o compra online y siente la esencia del Mediterráneo.</textarea></div>
+        <div class="fld2"><div class="fld"><label>Botón 1</label><input id="txt-nos-btn1" type="text" value="WhatsApp directo"></div><div class="fld"><label>Botón 2</label><input id="txt-nos-btn2" type="text" value="Ver colecciones"></div></div>
+        <button class="txt-apply" onclick="applyNosotros()">✓ Aplicar</button></div>
+      <div class="txt-block"><div class="txt-block-label">✅ Características</div>
+        <div class="fld2"><div class="fld"><label>Icono 1</label><input id="ft1-icon" type="text" value="📦"></div><div class="fld"><label>Título 1</label><input id="ft1-title" type="text" value="Envíos a España"></div></div>
+        <div class="fld"><label>Descripción 1</label><textarea id="ft1-desc" style="min-height:55px">Entrega en 3–6 días laborables a cualquier punto de la Península.</textarea></div>
+        <div class="fld2"><div class="fld"><label>Icono 2</label><input id="ft2-icon" type="text" value="🔒"></div><div class="fld"><label>Título 2</label><input id="ft2-title" type="text" value="Pago seguro"></div></div>
+        <div class="fld"><label>Descripción 2</label><textarea id="ft2-desc" style="min-height:55px">Tarjeta y Bizum con cifrado SSL de 256 bits.</textarea></div>
+        <div class="fld2"><div class="fld"><label>Icono 3</label><input id="ft3-icon" type="text" value="💬"></div><div class="fld"><label>Título 3</label><input id="ft3-title" type="text" value="Atención personal"></div></div>
+        <div class="fld"><label>Descripción 3</label><textarea id="ft3-desc" style="min-height:55px">Escríbenos por WhatsApp y te asesoramos al momento.</textarea></div>
+        <button class="txt-apply" onclick="applyFeatures()">✓ Aplicar</button></div>
+      <div class="txt-block"><div class="txt-block-label">📞 Contacto</div>
+        <div class="fld"><label>Teléfono</label><input id="contact-tel" type="tel" value="+34 971 34 19 72"></div>
+        <div class="fld"><label>WhatsApp (solo números)</label><input id="contact-wa" type="tel" value="34655024049"></div>
+        <div class="fld"><label>WhatsApp (número visible)</label><input id="contact-wa-display" type="text" value="+34 655 024 049"></div>
+        <div class="fld"><label>Email</label><input id="contact-email" type="email" value="ibimodasanantonio@gmail.com"></div>
+        <div class="fld"><label>Dirección</label><input id="contact-addr" type="text" value="Carrer Barcelona, 13G · Sant Antoni de Portmany, Ibiza"></div>
+        <button class="txt-apply" onclick="applyContacto()">✓ Aplicar</button></div>
+      <div class="txt-block"><div class="txt-block-label">⏱ Plazo de envío</div>
+        <div class="fld2"><div class="fld"><label>Desde (días)</label><input id="envio-desde" type="number" min="1" max="30" value="3"></div><div class="fld"><label>Hasta (días)</label><input id="envio-hasta" type="number" min="1" max="30" value="6"></div></div>
+        <button class="txt-apply" onclick="applyPlazoEnvio()">✓ Aplicar</button></div>
+      <div class="txt-block"><div class="txt-block-label">🦶 Footer</div>
+        <div class="fld"><label>Tagline</label><textarea id="txt-footer-tag" style="min-height:55px">Colecciones exclusivas para mujer y hombre desde Sant Antoni de Portmany, Ibiza.</textarea></div>
+        <div class="fld"><label>Colecciones (una por línea)</label><textarea id="txt-colecciones" style="min-height:130px">Sonia Peña
+Carla Ruiz
+Paz Torras
+Sissus
+Christian Koelhert
+Lino Clemente</textarea></div>
+        <button class="txt-apply" onclick="applyFooter()">✓ Aplicar</button></div>
+      <div class="txt-block">
+        <div class="txt-block-label">↩ Derecho de desistimiento</div>
+        <div class="fld"><label>WhatsApp desistimiento (solo números)</label><input id="desist-wa-inp" type="tel" value="34655024049"></div>
+        <div class="fld"><label>WhatsApp visible</label><input id="desist-wa-display-inp" type="text" value="655 02 40 49"></div>
+        <div class="fld"><label>Email desistimiento</label><input id="desist-email-inp" type="email" value="ibimodasanantonio@gmail.com"></div>
+        <button class="txt-apply" onclick="applyDesistContact()">✓ Aplicar</button>
+      </div>
+
+      <div class="txt-block"><div class="txt-block-label">📄 Modal Envíos</div>
+        <div class="fld"><label>Título</label><input id="txt-envios-title" type="text" value="Política de Envíos"></div>
+        <div class="fld"><label>Contenido</label><textarea id="txt-envios-body" style="min-height:100px">📦 Envíos en 3–6 días laborables. Gastos gratuitos en pedidos +100€.</textarea></div>
+        <button class="txt-apply" onclick="applyTexto('envios')">✓ Aplicar</button></div>
+      <div class="txt-block"><div class="txt-block-label">📄 Modal Devoluciones</div>
+        <div class="fld"><label>Título</label><input id="txt-devol-title" type="text" value="Devoluciones y Cambios"></div>
+        <div class="fld"><label>Contenido</label><textarea id="txt-devol-body" style="min-height:100px">✅ 30 días para devolver. Reembolso en 7 días laborables.</textarea></div>
+        <button class="txt-apply" onclick="applyTexto('devoluciones')">✓ Aplicar</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACTO MODAL -->
+<div class="modal-bg" id="contact-modal" onclick="if(event.target===this)closeContactModal()" style="align-items:center">
+  <div class="modal" style="max-width:480px">
+    <div class="modal-head">
+      <h2 style="font-size:1.3rem" id="contact-modal-title">Contacto</h2>
+      <button class="close-btn" onclick="closeContactModal()">✕</button>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.8rem;line-height:1.7" id="contact-modal-desc">Estamos aquí para ayudarte. Contáctanos por cualquiera de estos medios:</p>
+
+    <a id="cm-tel" href="tel:+34971341972" style="display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;border:1px solid var(--border);border-radius:3px;text-decoration:none;color:var(--ink);margin-bottom:.8rem;transition:border-color .2s" onmouseover="this.style.borderColor='var(--terra)'" onmouseout="this.style.borderColor='var(--border)'">
+      <span style="font-size:1.6rem">📞</span>
+      <div>
+        <div style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:.2rem" id="cm-tel-label">Teléfono</div>
+        <div style="font-size:.95rem;font-weight:500" id="cm-tel-text">+34 971 34 19 72</div>
+      </div>
+    </a>
+
+    <a id="cm-wa" href="https://wa.me/34655024049?text=Hola%20Ibimoda%20Ibiza%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n." target="_blank" style="display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;border:1px solid var(--border);border-radius:3px;text-decoration:none;color:var(--ink);margin-bottom:.8rem;transition:border-color .2s" onmouseover="this.style.borderColor='#25d366'" onmouseout="this.style.borderColor='var(--border)'">
+      <span style="font-size:1.6rem">💬</span>
+      <div>
+        <div style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#25d366;margin-bottom:.2rem">WhatsApp</div>
+        <div style="font-size:.95rem;font-weight:500" id="cm-wa-text">+34 655 024 049</div>
+      </div>
+      <span style="margin-left:auto;font-size:.72rem;color:#25d366;letter-spacing:.1em;text-transform:uppercase">Escribir →</span>
+    </a>
+
+          <a id="cm-email" href="mailto:ibimodasanantonio@gmail.com" style="display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;border:1px solid var(--border);border-radius:3px;text-decoration:none;color:var(--ink);margin-bottom:.8rem;transition:border-color .2s" onmouseover="this.style.borderColor='var(--sea)'" onmouseout="this.style.borderColor='var(--border)'">
+      <span style="font-size:1.6rem">✉️</span>
+      <div>
+        <div style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sea);margin-bottom:.2rem">Email</div>
+        <div style="font-size:.95rem;font-weight:500" id="cm-email-text">ibimodasanantonio@gmail.com</div>
+      </div>
+      <span style="margin-left:auto;font-size:.72rem;color:var(--sea);letter-spacing:.1em;text-transform:uppercase">Enviar →</span>
+    </a>
+
+    <a id="cm-maps" href="https://maps.google.com/?q=Carrer+Barcelona+13G+Sant+Antoni+de+Portmany+Ibiza" target="_blank" style="display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;border:1px solid var(--border);border-radius:3px;text-decoration:none;color:var(--ink);transition:border-color .2s" onmouseover="this.style.borderColor='var(--terra)'" onmouseout="this.style.borderColor='var(--border)'">
+      <span style="font-size:1.6rem">📍</span>
+      <div>
+        <div style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:.2rem" id="cm-addr-label">Tienda</div>
+        <div style="font-size:.88rem;font-weight:500" id="cm-addr-text">Carrer Barcelona, 13G · Sant Antoni de Portmany, Ibiza</div>
+      </div>
+      <span style="margin-left:auto;font-size:.72rem;color:var(--terra);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap">Ver mapa →</span>
+    </a>
+  </div>
+</div>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="display:none;position:fixed;inset:0;z-index:1200;background:rgba(26,21,32,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:1rem">
+  <div style="background:#fff;border-radius:6px;box-shadow:0 24px 80px rgba(26,21,32,.3);max-width:520px;width:100%;padding:2rem 2rem 1.5rem;position:relative">
+    <!-- Cerrar -->
+    <button onclick="acceptCookies('none')" style="position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.2rem;color:var(--muted);cursor:pointer">✕</button>
+
+    <!-- Título -->
+    <h3 style="font-family:'Playfair Display',serif;font-weight:500;font-size:1.15rem;margin-bottom:1rem;padding-right:2rem" id="ck-title">Gestionar el consentimiento de las cookies</h3>
+
+    <!-- Descripción -->
+    <p style="font-size:.8rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem" id="ck-desc">
+      Para ofrecer las mejores experiencias, utilizamos tecnologías como las cookies para almacenar y/o acceder a la información del dispositivo. Puedes aceptarlas todas, rechazar las no esenciales o configurar tus preferencias. Consulta nuestra <a href="javascript:void(0)" onclick="openLegal('cookies')" style="color:var(--terra);text-decoration:underline">Política de Cookies</a>.
+    </p>
+
+    <!-- Botones principales -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;margin-bottom:1rem">
+      <button onclick="acceptCookies('all')" id="ck-accept"
+        style="background:var(--terra);color:#fff;border:none;padding:.85rem .5rem;font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border-radius:3px;transition:background .2s"
+        onmouseover="this.style.background='var(--terra-l)'" onmouseout="this.style.background='var(--terra)'">
+        Aceptar
+      </button>
+      <button onclick="acceptCookies('none')" id="ck-reject"
+        style="background:none;color:var(--ink);border:1px solid var(--border);padding:.85rem .5rem;font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border-radius:3px;transition:all .2s"
+        onmouseover="this.style.borderColor='var(--ink)'" onmouseout="this.style.borderColor='var(--border)'">
+        Denegar
+      </button>
+      <button onclick="openCookieConfig()" id="ck-config"
+        style="background:none;color:var(--muted);border:1px solid var(--border);padding:.85rem .5rem;font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border-radius:3px;transition:all .2s"
+        onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">
+        Ver preferencias
+      </button>
+    </div>
+
+    <!-- Links legales -->
+    <div style="display:flex;justify-content:center;gap:1.5rem">
+      <a href="javascript:void(0)" onclick="openLegal('privacidad')" style="font-size:.72rem;color:var(--muted);text-decoration:underline" id="ck-privacy-link">Política de Privacidad</a>
+      <a href="javascript:void(0)" onclick="openLegal('aviso')" style="font-size:.72rem;color:var(--muted);text-decoration:underline" id="ck-legal-link">Aviso Legal</a>
+      <a href="javascript:void(0)" onclick="openLegal('cookies')" style="font-size:.72rem;color:var(--muted);text-decoration:underline" id="ck-policy-link">Cookies</a>
+    </div>
+  </div>
+</div>
+
+<!-- COOKIE CONFIG MODAL -->
+<div class="modal-bg" id="cookie-config-modal" onclick="if(event.target===this)closeCookieConfig()" style="align-items:center;z-index:1300">
+  <div class="modal" style="max-width:500px">
+    <div class="modal-head">
+      <h2 style="font-size:1.2rem" id="ck-cfg-title">Configurar cookies</h2>
+      <button class="close-btn" onclick="closeCookieConfig()">✕</button>
+    </div>
+    <p style="font-size:.8rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.7" id="ck-cfg-desc">Selecciona qué tipos de cookies permites. Las cookies técnicas son siempre necesarias y no se pueden desactivar.</p>
+
+    <!-- Técnicas -->
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem;background:var(--sand);border-radius:3px;margin-bottom:.8rem;border:1px solid var(--border)">
+      <div>
+        <div style="font-size:.85rem;font-weight:500;margin-bottom:.2rem" id="ck-tech-label">🔧 Cookies técnicas</div>
+        <div style="font-size:.75rem;color:var(--muted)" id="ck-tech-desc">Necesarias para el funcionamiento básico de la web. No se pueden desactivar.</div>
+      </div>
+      <div style="background:var(--terra);color:#fff;font-size:.68rem;padding:.3rem .8rem;border-radius:20px;white-space:nowrap;letter-spacing:.1em" id="ck-always">Siempre activas</div>
+    </div>
+
+    <!-- Analíticas -->
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem;background:var(--sand);border-radius:3px;margin-bottom:.8rem;border:1px solid var(--border)">
+      <div style="flex:1;margin-right:1rem">
+        <div style="font-size:.85rem;font-weight:500;margin-bottom:.2rem" id="ck-anal-label">📊 Cookies analíticas</div>
+        <div style="font-size:.75rem;color:var(--muted)" id="ck-anal-desc">Nos ayudan a entender cómo se usa la web para mejorar nuestros servicios.</div>
+      </div>
+      <label style="position:relative;display:inline-block;width:44px;height:24px;flex-shrink:0">
+        <input type="checkbox" id="ck-toggle-analytics" style="opacity:0;width:0;height:0">
+        <span onclick="toggleSwitch('ck-toggle-analytics')" style="position:absolute;cursor:pointer;inset:0;background:var(--border);border-radius:24px;transition:.3s" id="ck-sw-analytics"></span>
+      </label>
+    </div>
+
+    <!-- Personalización -->
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem;background:var(--sand);border-radius:3px;margin-bottom:1.5rem;border:1px solid var(--border)">
+      <div style="flex:1;margin-right:1rem">
+        <div style="font-size:.85rem;font-weight:500;margin-bottom:.2rem" id="ck-pers-label">🎯 Cookies de personalización</div>
+        <div style="font-size:.75rem;color:var(--muted)" id="ck-pers-desc">Permiten recordar tus preferencias para una mejor experiencia.</div>
+      </div>
+      <label style="position:relative;display:inline-block;width:44px;height:24px;flex-shrink:0">
+        <input type="checkbox" id="ck-toggle-personal" style="opacity:0;width:0;height:0">
+        <span onclick="toggleSwitch('ck-toggle-personal')" style="position:absolute;cursor:pointer;inset:0;background:var(--border);border-radius:24px;transition:.3s" id="ck-sw-personal"></span>
+      </label>
+    </div>
+
+    <div style="display:flex;gap:.8rem">
+      <button onclick="saveCookieConfig()" style="flex:1;background:var(--terra);color:#fff;border:none;padding:.85rem;font-family:'Jost',sans-serif;font-size:.73rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;border-radius:2px" id="ck-save">✓ Guardar preferencias</button>
+      <button onclick="acceptCookies('all');closeCookieConfig()" style="flex:1;background:var(--ink);color:#fff;border:none;padding:.85rem;font-family:'Jost',sans-serif;font-size:.73rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;border-radius:2px" id="ck-accept-all2">Aceptar todas</button>
+    </div>
+  </div>
+</div>
+
+<!-- DESISTIMIENTO MODAL -->
+<div class="modal-bg" id="desist-modal" onclick="if(event.target===this)closeDesist()" style="align-items:center;z-index:700">
+  <div class="modal" style="max-width:520px">
+    <div class="modal-head">
+      <h2 style="font-size:1.2rem" id="desist-title">Ejercer derecho de desistimiento</h2>
+      <button class="close-btn" onclick="closeDesist()">✕</button>
+    </div>
+
+    <div id="desist-form-wrap">
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem" id="desist-intro">
+        Conforme al artículo 102 del Real Decreto Legislativo 1/2007, tienes derecho a desistir de tu compra en un plazo de <strong>14 días naturales</strong> desde la recepción del pedido, sin necesidad de justificación.
+      </p>
+
+      <div class="form-row"><label id="desist-lbl-order">Número de pedido *</label><input id="desist-order" type="text" placeholder="IBI-XXXXXX"></div>
+      <div class="form-row"><label id="desist-lbl-name">Nombre completo *</label><input id="desist-name" type="text" placeholder="Ana García Martínez"></div>
+      <div class="form-row"><label id="desist-lbl-email">Email *</label><input id="desist-email" type="email" placeholder="ana@ejemplo.com"></div>
+      <div class="form-row">
+        <label id="desist-lbl-reason">Motivo (opcional)</label>
+        <textarea id="desist-reason" style="width:100%;padding:.8rem 1rem;border:1px solid var(--border);font-family:'Jost',sans-serif;font-size:.88rem;color:var(--ink);outline:none;border-radius:2px;resize:vertical;min-height:90px;line-height:1.6" placeholder="Talla incorrecta, cambio de opinión..."></textarea>
+      </div>
+
+      <button onclick="sendDesist()" style="width:100%;background:var(--terra);color:#fff;border:none;padding:1rem;font-family:'Jost',sans-serif;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;border-radius:2px;margin-bottom:1.5rem" id="desist-send-btn">
+        📨 Enviar solicitud
+      </button>
+
+      <div style="border-top:1px solid var(--border);padding-top:1.2rem">
+        <p style="font-size:.78rem;color:var(--muted);margin-bottom:.8rem;line-height:1.7" id="desist-also">También puedes solicitarlo por:</p>
+        <a id="desist-wa-link" href="https://wa.me/34655024049?text=Quiero%20ejercer%20mi%20derecho%20de%20desistimiento" target="_blank"
+          style="display:flex;align-items:center;gap:.8rem;padding:.75rem 1rem;border:1px solid var(--border);border-radius:3px;text-decoration:none;color:var(--ink);margin-bottom:.6rem;transition:border-color .2s"
+          onmouseover="this.style.borderColor='#25d366'" onmouseout="this.style.borderColor='var(--border)'">
+          <span style="font-size:1.3rem">💬</span>
+          <div><div style="font-size:.7rem;color:#25d366;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.1rem">WhatsApp</div>
+          <div style="font-size:.88rem;font-weight:500" id="desist-wa-text">655 02 40 49</div></div>
+        </a>
+        <a id="desist-email-link" href="mailto:ibimodasanantonio@gmail.com"
+          style="display:flex;align-items:center;gap:.8rem;padding:.75rem 1rem;border:1px solid var(--border);border-radius:3px;text-decoration:none;color:var(--ink);transition:border-color .2s"
+          onmouseover="this.style.borderColor='var(--sea)'" onmouseout="this.style.borderColor='var(--border)'">
+          <span style="font-size:1.3rem">✉️</span>
+          <div><div style="font-size:.7rem;color:var(--sea);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.1rem">Email</div>
+          <div style="font-size:.88rem;font-weight:500" id="desist-email-text">ibimodasanantonio@gmail.com</div></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Confirmación -->
+    <div id="desist-ok" style="display:none;text-align:center;padding:1.5rem 0">
+      <div style="font-size:3rem;margin-bottom:1rem">✅</div>
+      <h3 style="font-family:'Playfair Display',serif;font-weight:400;font-size:1.4rem;margin-bottom:.8rem" id="desist-ok-title">Solicitud enviada</h3>
+      <p style="font-size:.85rem;color:var(--muted);line-height:1.8" id="desist-ok-msg">Hemos recibido tu solicitud de desistimiento. Nos pondremos en contacto contigo en un plazo máximo de <strong>2 días hábiles</strong>.</p>
+      <button onclick="closeDesist()" class="btn-terra" style="margin-top:1.5rem;padding:.85rem 2rem">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORY MODAL -->
+<!-- PRODUCT DETAIL MODAL -->
+<div class="modal-bg" id="prod-modal" onclick="if(event.target===this)closeProdModal()" style="align-items:center;z-index:660">
+  <div style="background:var(--ivory);width:100%;max-width:900px;border-radius:4px;max-height:95vh;overflow-y:auto;display:grid;grid-template-columns:55% 45%;position:relative" class="modal-grid-inner">
+    <!-- Carrusel -->
+    <div style="position:relative;background:#f8f5f0;height:580px;overflow:hidden;border-radius:4px 0 0 4px" id="pm-carousel">
+      <div id="pm-slides" style="display:flex;height:100%;width:100%;transition:transform .4s cubic-bezier(.16,1,.3,1);will-change:transform"></div>
+      <button onclick="pmMove(-1)" id="pm-prev" style="position:absolute;left:.8rem;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.85);border:none;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;z-index:2;display:none">&#8592;</button>
+      <button onclick="pmMove(1)"  id="pm-next" style="position:absolute;right:.8rem;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.85);border:none;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;z-index:2;display:none">&#8594;</button>
+      <div id="pm-dots" style="position:absolute;bottom:.8rem;left:50%;transform:translateX(-50%);display:flex;gap:.4rem"></div>
+    </div>
+    <!-- Info -->
+    <div style="padding:2rem;display:flex;flex-direction:column;justify-content:center">
+      <button onclick="closeProdModal()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;cursor:pointer;font-size:1.2rem;color:var(--muted)">&#x2715;</button>
+      <div class="prod-brand" id="pm-brand"></div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:.6rem" id="pm-name"></div>
+      <div style="font-size:.85rem;color:var(--muted);line-height:1.7;margin-bottom:.5rem" id="pm-desc"></div>
+      <div id="pm-color-wrap" style="display:none;margin-bottom:1rem"><span style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Color: </span><span id="pm-color" style="font-size:.85rem;color:var(--ink)"></span></div>
+      <div style="font-size:1.2rem;font-weight:500;color:var(--sea);margin-bottom:1rem" id="pm-price"></div>
+      <!-- Tallas -->
+      <div id="pm-tallas-wrap" style="display:none;margin-bottom:1.2rem">
+        <label style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.4rem">Talla</label>
+        <select id="pm-tallas-sel" style="width:100%;padding:.75rem 1rem;border:1px solid var(--border);font-family:'Jost',sans-serif;font-size:.88rem;color:var(--ink);background:#fff;border-radius:2px;outline:none;cursor:pointer" onfocus="this.style.borderColor='var(--terra)'" onblur="this.style.borderColor='var(--border)'"></select>
+      </div>
+      <button id="pm-atc" onclick="pmAddToCart()" style="width:100%;background:var(--ink);color:#fff;border:none;padding:1rem;font-family:'Jost',sans-serif;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .2s" onmouseover="this.style.background='var(--terra)'" onmouseout="this.style.background='var(--ink)'">Añadir al carrito</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="cat-modal" onclick="if(event.target===this)closeCatModal()" style="align-items:flex-start;padding-top:80px;z-index:650">
+  <div style="background:var(--ivory);width:100%;max-width:900px;border-radius:4px;max-height:85vh;overflow-y:auto;padding:2rem">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem">
+      <h2 style="font-family:'Playfair Display',serif;font-weight:400;font-size:1.5rem" id="cat-modal-title"></h2>
+      <button onclick="closeCatModal()" style="background:none;border:none;cursor:pointer;font-size:1.2rem;color:var(--muted)">&#x2715;</button>
+    </div>
+    <!-- FILTROS -->
+    <div id="cat-filters" style="display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center">
+      <select id="cat-filter-talla" onchange="applyCatFilters()" style="padding:.5rem 1rem;border:1px solid var(--border);font-family:'Jost',sans-serif;font-size:.78rem;color:var(--ink);background:#fff;border-radius:2px;cursor:pointer;outline:none">
+        <option value="">Todas las tallas</option>
+      </select>
+      <select id="cat-filter-color" onchange="applyCatFilters()" style="padding:.5rem 1rem;border:1px solid var(--border);font-family:'Jost',sans-serif;font-size:.78rem;color:var(--ink);background:#fff;border-radius:2px;cursor:pointer;outline:none">
+        <option value="">Todos los colores</option>
+      </select>
+      <button onclick="resetCatFilters()" id="cat-filter-reset" style="display:none;padding:.5rem 1rem;background:none;border:1px solid var(--terra);color:var(--terra);font-family:'Jost',sans-serif;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px">&#x2715; Quitar filtros</button>
+      <span id="cat-filter-count" style="font-size:.78rem;color:var(--muted);margin-left:auto"></span>
+    </div>
+    <div class="products-grid" id="cat-modal-grid"></div>
+  </div>
+</div>
+
+<!-- LEGAL MODAL -->
+<div class="modal-bg" id="legal-modal" onclick="if(event.target===this)closeLegal()">
+  <div class="modal" style="max-width:600px">
+    <div class="modal-head"><h2 id="legal-title" style="font-size:1.3rem"></h2><button class="close-btn" onclick="closeLegal()">✕</button></div>
+    <div id="legal-body" style="font-size:.85rem;color:var(--muted);line-height:1.8"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- ══════════ PÁGINA ══════════ -->
+<div class="announce" id="announce-bar"><span>✦</span> <span id="announce-txt">Envíos a toda España</span> <span>✦</span> <span>Recogida gratuita en tienda</span> <span>✦</span> <span style="color:#fff">Envío gratuito en pedidos a partir de 100€</span> <span>✦</span></div>
+
+<header>
+  <nav class="left">
+    <a href="#" data-t="navShop">Tienda</a>
+    <a href="#tienda" data-t="navCollections">Colecciones</a>
+    <a href="#nosotros" data-t="navAbout">Nosotros</a>
+  </nav>
+  <div style="display:inline-flex;flex-direction:column;align-items:center">
+    <img id="logo-img" alt="Logo" style="height:52px;width:auto;object-fit:contain;display:none">
+    <div id="logo-text-default" style="display:flex;flex-direction:column;align-items:center;line-height:1">
+      <span style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;letter-spacing:.15em;background:linear-gradient(135deg,#6b35a8,#c0399e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Ibimoda</span>
+      <span style="font-size:.6rem;letter-spacing:.22em;color:var(--ink);text-transform:uppercase;font-weight:400;margin-top:1px">Pepita Planells</span>
+    </div>
+  </div>
+  <nav class="right">
+    <a href="#nosotros" data-t="navAbout">Nosotros</a>
+    <a href="javascript:void(0)" onclick="openContactModal()" data-t="navContact">Contacto</a>
+    <div class="header-icons">
+      <!-- LANG TOGGLE -->
+      <button class="lang-btn" id="lang-btn" onclick="toggleLang()">
+        <span class="flag" id="lang-flag">🇬🇧</span>
+        <span id="lang-label">EN</span>
+      </button>
+      <button class="icon-btn" onclick="openSearch()">🔍</button>
+      <button class="icon-btn" onclick="openCart()" style="position:relative">🛍<span class="cart-dot" id="cart-dot">0</span></button>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow" id="hero-eyebrow">Nueva Colección 2026</div>
+    <h1 class="hero-h1" id="hero-h1">Moda que<br>nace en<br><em>Ibiza</em></h1>
+    <p class="hero-desc" id="hero-desc">Ropa elegante para ocasiones especiales. Desde Sant Antoni, llevamos la esencia mediterránea a tu armario.</p>
+    <div class="hero-cta">
+      <a href="#tienda" class="btn-terra" id="hero-btn1">Ver colecciones</a>
+      <a href="#nosotros" class="btn-ghost" id="hero-btn2">Nuestra historia</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-main"><img id="img-hero-main" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80" alt="Moda Ibiza"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner" id="marquee-inner">
+    <span>Sonia Peña</span><span style="color:rgba(250,248,244,.4)">✦</span><span>Carla Ruiz</span><span style="color:rgba(250,248,244,.4)">✦</span><span>Paz Torras</span><span style="color:rgba(250,248,244,.4)">✦</span><span>Sissus</span><span style="color:rgba(250,248,244,.4)">✦</span><span>Christian Koelhert</span><span style="color:rgba(250,248,244,.4)">✦</span><span>Lino Clemente</span><span style="color:rgba(250,248,244,.4)">✦</span><span>Ibimoda Ibiza</span><span style="color:rgba(250,248,244,.4)">✦</span>
+    <span>Sonia Peña</span><span style="color:rgba(250,248,244,.4)">✦</span><span>Carla Ruiz</span><span style="color:rgba(250,248,244,.4)">✦</span><span>Paz Torras</span><span style="color:rgba(250,248,244,.4)">✦</span><span>Sissus</span><span style="color:rgba(250,248,244,.4)">✦</span><span>Christian Koelhert</span><span style="color:rgba(250,248,244,.4)">✦</span><span>Lino Clemente</span><span style="color:rgba(250,248,244,.4)">✦</span><span>Ibimoda Ibiza</span><span style="color:rgba(250,248,244,.4)">✦</span>
+  </div>
+</div>
+
+<!-- CATEGORÍAS -->
+<section class="section-pad" id="tienda" style="background:var(--ivory)">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow" id="cat-eyebrow">Explora por categoría</div>
+      <h2 class="section-title" id="cat-title">¿Qué estás <em>buscando?</em></h2>
+    </div>
+  </div>
+  <div class="gender-tabs">
+    <button class="gender-tab active" id="tab-mujer" onclick="switchGender('mujer',this)" data-t="tabWomen">Mujer</button>
+    <button class="gender-tab" id="tab-hombre" onclick="switchGender('hombre',this)" data-t="tabMen">Hombre</button>
+  </div>
+  <div class="cat-panel active cat-grid" id="panel-mujer">
+    <div class="cat-card" onclick="openCategory('vestidos','Vestidos')"><img id="img-cat-vestidos" class="cat-img" src="https://images.unsplash.com/photo-1572804013427-4d7ca7268217?w=500&q=80" alt="Vestidos"><div class="cat-overlay"><div class="cat-name" data-t="catDresses">Vestidos</div><div class="cat-arrow" data-t="catSee">Ver colección →</div></div></div>
+    <div class="cat-card" onclick="openCategory('monos','Monos')"><img id="img-cat-monos" class="cat-img" src="https://res.cloudinary.com/djudfepgz/image/upload/v1779728116/mono_xgporj.webp" alt="Monos"><div class="cat-overlay"><div class="cat-name" data-t="catJumpsuits">Monos</div><div class="cat-arrow" data-t="catSee">Ver colección →</div></div></div>
+    <div class="cat-card" onclick="openCategory('trajes-m','Trajes')"><img id="img-cat-trajes-m" class="cat-img" src="https://images.unsplash.com/photo-1583846783214-7229a91b20ed?w=500&q=80" alt="Trajes"><div class="cat-overlay"><div class="cat-name" data-t="catSuits">Trajes</div><div class="cat-arrow" data-t="catSee">Ver colección →</div></div></div>
+    <div class="cat-card" onclick="openCategory('pantalones','Pantalones')"><img id="img-cat-pantalones" class="cat-img" src="https://images.unsplash.com/photo-1551854304-b7a09bfadf41?w=500&q=80" alt="Pantalones"><div class="cat-overlay"><div class="cat-name" data-t="catTrousers">Pantalones</div><div class="cat-arrow" data-t="catSee">Ver colección →</div></div></div>
+  </div>
+  <div class="cat-panel cat-grid" id="panel-hombre">
+    <div class="cat-card" onclick="openCategory('trajes-h','Trajes')"><img id="img-cat-trajes-h" class="cat-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" alt="Trajes"><div class="cat-overlay"><div class="cat-name" data-t="catSuits">Trajes</div><div class="cat-arrow" data-t="catSee">Ver colección →</div></div></div>
+    <div class="cat-card" onclick="openCategory('camisas','Camisas')"><img id="img-cat-camisas" class="cat-img" src="https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&q=80" alt="Camisas"><div class="cat-overlay"><div class="cat-name" data-t="catShirts">Camisas</div><div class="cat-arrow" data-t="catSee">Ver colección →</div></div></div>
+    <div class="cat-card" onclick="openCategory('calzado','Calzado')"><img id="img-cat-chaquetas" class="cat-img" src="https://images.unsplash.com/photo-1548126032-079a0fb0099d?w=500&q=80" alt="Calzado"><div class="cat-overlay"><div class="cat-name" data-t="catJackets">Calzado</div><div class="cat-arrow" data-t="catSee">Ver colección →</div></div></div>
+    <div class="cat-card" onclick="openCategory('corbatas','Corbatas')"><img id="img-cat-corbatas" class="cat-img" src="https://res.cloudinary.com/djudfepgz/image/upload/v1779728188/corbata_ok_zw2gp7.png" alt="Corbatas"><div class="cat-overlay"><div class="cat-name">Corbatas</div><div class="cat-arrow" data-t="catSee">Ver colección →</div></div></div>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section class="featured-section">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow" id="prod-eyebrow">Selección editorial</div>
+      <h2 class="section-title" id="prod-title">Piezas <em>destacadas</em></h2>
+    </div>
+    <a href="#" class="see-all" data-t="seeAll">Ver todo →</a>
+  </div>
+  <div class="products-grid" id="products-grid"></div>
+</section>
+
+<!-- NOSOTROS -->
+<section class="about-strip" id="nosotros">
+  <div class="about-content">
+    <div class="about-eyebrow" id="nos-eyebrow">Nuestra historia</div>
+    <h2 class="about-title" id="nos-title">Moda con<br><em>alma ibicenca</em></h2>
+    <p class="about-text" id="nos-p1">En Ibimoda Ibiza encontrarás moda elegante para cada ocasión. Desde Sant Antoni de Portmany, seleccionamos las mejores colecciones con tejidos de alta calidad.</p>
+    <p class="about-text" id="nos-p2">Enviamos a toda la Península. Visítanos o compra online y siente la esencia del Mediterráneo.</p>
+    <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
+      <a id="nos-btn1" href="https://wa.me/34655024049" target="_blank" class="btn-terra">WhatsApp directo</a>
+      <a id="nos-btn2" href="#tienda" class="btn-ghost">Ver colecciones</a>
+    </div>
+  </div>
+</section>
+
+<!-- CARACTERÍSTICAS -->
+<div class="features-bar">
+  <div class="feature-item"><div class="feature-icon" id="ft1-icon-el">📦</div><div class="feature-title" id="ft1-title-el">Envíos a España</div><div class="feature-desc" id="ft1-desc-el">Entrega en 3–6 días laborables a cualquier punto de la Península.</div></div>
+  <div class="feature-item"><div class="feature-icon" id="ft2-icon-el">🔒</div><div class="feature-title" id="ft2-title-el">Pago seguro</div><div class="feature-desc" id="ft2-desc-el">Tarjeta de crédito/débito y Google Pay con cifrado SSL de 256 bits.</div></div>
+  <div class="feature-item"><div class="feature-icon" id="ft3-icon-el">💬</div><div class="feature-title" id="ft3-title-el">Atención personal</div><div class="feature-desc" id="ft3-desc-el">Escríbenos por WhatsApp y te asesoramos al momento.</div></div>
+</div>
+
+<!-- RESEÑAS -->
+<section class="reviews-section">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem">
+    <div><div class="section-eyebrow" id="rev-eyebrow">Lo que dicen de nosotros</div></div>
+    <a href="https://www.google.com/maps" target="_blank" class="btn-terra" style="font-size:.72rem;padding:.75rem 1.6rem" data-t="viewMaps">Ver en Google Maps</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:2rem;margin-bottom:3rem;flex-wrap:wrap">
+    <div style="text-align:center;min-width:130px">
+      <div style="font-family:'Playfair Display',serif;font-size:4rem;font-weight:700;color:var(--ink);line-height:1" id="rev-score">4,8</div>
+      <div style="color:#f5a623;font-size:1.4rem;letter-spacing:2px;margin:.3rem 0">★★★★★</div>
+      <div style="font-size:.78rem;color:var(--muted)" id="rev-total">67 opiniones</div>
+    </div>
+    <div style="flex:1;min-width:180px">
+      <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.4rem"><span style="font-size:.75rem;color:var(--muted);width:14px">5</span><div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden"><div style="width:82%;height:100%;background:#f5a623;border-radius:4px"></div></div><span style="font-size:.75rem;color:var(--muted)">55</span></div>
+      <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.4rem"><span style="font-size:.75rem;color:var(--muted);width:14px">4</span><div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden"><div style="width:12%;height:100%;background:#f5a623;border-radius:4px"></div></div><span style="font-size:.75rem;color:var(--muted)">8</span></div>
+      <div style="display:flex;align-items:center;gap:.7rem"><span style="font-size:.75rem;color:var(--muted);width:14px">1</span><div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden"><div style="width:1%;height:100%;background:#f5a623;border-radius:4px"></div></div><span style="font-size:.75rem;color:var(--muted)">1</span></div>
+    </div>
+  </div>
+  <div class="rev-carousel"><div class="rev-track" id="rev-track"></div></div>
+  <div class="rev-nav">
+    <button class="rev-btn" id="rev-prev" onclick="revMove(-1)">←</button>
+    <div class="rev-dots" id="rev-dots"></div>
+    <button class="rev-btn" id="rev-next" onclick="revMove(1)">→</button>
+  </div>
+</section>
+
+<!-- REDES -->
+<section style="padding:5rem 3rem;background:var(--ivory)">
+  <div style="text-align:center;margin-bottom:2.5rem">
+    <div class="section-eyebrow" data-t="followUs">Síguenos</div>
+    <h2 class="section-title" data-t="onSocial">En redes <em>sociales</em></h2>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:700px;margin:0 auto">
+    <a id="ig-link" href="https://www.instagram.com/ibimodaibi/" target="_blank" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:2.5rem 2rem;border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--ink);transition:border-color .3s" onmouseover="this.style.borderColor='var(--terra)'" onmouseout="this.style.borderColor='var(--border)'">
+      <svg width="44" height="44" viewBox="0 0 24 24"><defs><linearGradient id="ig" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f09433"/><stop offset="50%" stop-color="#dc2743"/><stop offset="100%" stop-color="#bc1888"/></linearGradient></defs><rect x="2" y="2" width="20" height="20" rx="5" fill="url(#ig)"/><circle cx="12" cy="12" r="4" stroke="white" stroke-width="1.5" fill="none"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg>
+      <div style="text-align:center"><div style="font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:.2rem">Instagram</div><div style="font-size:.78rem;color:var(--muted)">@ibimodaibi</div></div>
+      <span style="font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--terra);border-bottom:1px solid var(--terra);padding-bottom:1px" data-t="followBtn">Seguir →</span>
+    </a>
+    <a id="fb-link" href="https://www.facebook.com/ibimodaibiza/" target="_blank" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:2.5rem 2rem;border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--ink);transition:border-color .3s" onmouseover="this.style.borderColor='#1877F2'" onmouseout="this.style.borderColor='var(--border)'">
+      <svg width="44" height="44" viewBox="0 0 24 24"><rect width="24" height="24" rx="5" fill="#1877F2"/><path d="M16 8h-2a1 1 0 0 0-1 1v2h3l-.5 3H13v7h-3v-7H8v-3h2V9a4 4 0 0 1 4-4h2v3z" fill="white"/></svg>
+      <div style="text-align:center"><div style="font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:.2rem">Facebook</div><div style="font-size:.78rem;color:var(--muted)">Ibimoda Ibiza</div></div>
+      <span style="font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:#1877F2;border-bottom:1px solid #1877F2;padding-bottom:1px" data-t="followBtn">Seguir →</span>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT BAR -->
+<div class="contact-bar">
+  <a id="tel-link" href="tel:+34971341972" class="contact-item">📞 <strong id="tel-text">+34 971 34 19 72</strong></a>
+  <a id="wa-contact-link" href="https://wa.me/34655024049?text=Hola%20Ibimoda%20Ibiza%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n." target="_blank" class="contact-item">💬 <strong id="wa-contact-text">+34 655 024 049</strong></a>
+  <a id="email-contact-link" href="mailto:ibimodasanantonio@gmail.com" class="contact-item">✉️ <strong id="email-contact-text">ibimodasanantonio@gmail.com</strong></a>
+  <a id="maps-link" href="https://maps.google.com/?q=Carrer+Barcelona+13G+Sant+Antoni+de+Portmany+Ibiza" target="_blank" class="contact-item">📍 <strong id="addr-text">Carrer Barcelona, 13G · Sant Antoni de Portmany, Ibiza</strong></a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <img id="footer-logo-img" alt="Logo" style="height:48px;width:auto;object-fit:contain;display:none">
+      <div id="footer-logo-text">
+        <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;background:linear-gradient(135deg,#6b35a8,#c0399e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.08em">Ibimoda</div>
+        <div style="font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(250,248,244,.6);font-weight:400;margin-bottom:.4rem">Pepita Planells</div>
+      </div>
+      <p class="footer-tagline" id="footer-tagline">Colecciones exclusivas para mujer y hombre desde Sant Antoni de Portmany, Ibiza.</p>
+      <div class="footer-social">
+        <a id="fb-footer" href="https://www.facebook.com/ibimodaibiza/" target="_blank" class="social-btn">f</a>
+        <a id="ig-footer" href="https://www.instagram.com/ibimodaibi/" target="_blank" class="social-btn">◎</a>
+        <a id="wa-footer" href="https://wa.me/34655024049" target="_blank" class="social-btn">💬</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4 data-t="footerCollections">Colecciones</h4><ul id="footer-colecciones">
+      <li><span class="footer-plain">Sonia Peña</span></li><li><span class="footer-plain">Carla Ruiz</span></li>
+      <li><span class="footer-plain">Paz Torras</span></li><li><span class="footer-plain">Sissus</span></li>
+      <li><span class="footer-plain">Christian Koelhert</span></li><li><span class="footer-plain">Lino Clemente</span></li>
+    </ul></div>
+    <div class="footer-col"><h4 data-t="footerInfo">Información</h4><ul>
+      <li><a href="javascript:void(0)" onclick="openLegal('envios')" data-t="footerShipping">Envíos</a></li>
+      <li><a href="javascript:void(0)" onclick="openLegal('devoluciones')" data-t="footerReturns">Devoluciones</a></li>
+      <li><a href="javascript:void(0)" onclick="openDesist()" style="color:var(--terra-l)!important" data-t="footerDesist">↩ Derecho de desistimiento</a></li>
+      <li><a href="javascript:void(0)" onclick="openContactModal()" data-t="navContact">Contacto</a></li>
+    </ul></div>
+    <div class="footer-col"><h4 data-t="footerLegal">Legal</h4><ul>
+      <li><a href="javascript:void(0)" onclick="openLegal('aviso')" data-t="footerNotice">Aviso legal</a></li>
+      <li><a href="javascript:void(0)" onclick="openLegal('privacidad')" data-t="footerPrivacy">Privacidad</a></li>
+      <li><a href="javascript:void(0)" onclick="openLegal('cookies')">Cookies</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal">© 2026 Ibimoda Ibiza<a href="#" data-t="footerNotice">Aviso Legal</a><a href="#" data-t="footerPrivacy">Privacidad</a></div>
+    <div ondblclick="openAdmLogin()" style="color:rgba(250,248,244,.15);font-size:.7rem;cursor:default;user-select:none;transition:color .2s" onmouseover="this.style.color='rgba(192,57,158,.5)'" onmouseout="this.style.color='rgba(250,248,244,.15)'">⚙ Admin</div>
+  </div>
+</footer>
+
+<script>
+// ══════════════════════════════════════════════
+// TRANSLATIONS
+// ══════════════════════════════════════════════
+const LANG = {
+  es: {
+    navShop:'Tienda', navCollections:'Colecciones', navAbout:'Nosotros', navContact:'Contacto',
+    tabWomen:'Mujer', tabMen:'Hombre',
+    catDresses:'Vestidos', catJumpsuits:'Monos', catSuits:'Trajes', catTrousers:'Pantalones',
+    catShirts:'Camisas', catJackets:'Chaquetas', catSee:'Ver colección →',
+    seeAll:'Ver todo →',
+    followUs:'Síguenos', onSocial:'En redes <em>sociales</em>', followBtn:'Seguir →',
+    viewMaps:'Ver en Google Maps',
+    footerCollections:'Colecciones', footerInfo:'Información', footerLegal:'Legal',
+    footerShipping:'Envíos', footerReturns:'Devoluciones',
+    footerNotice:'Aviso legal', footerPrivacy:'Privacidad',
+    cartTitle:'Tu selección', cartEmpty:'Tu carrito está vacío',
+    cartEstimate:'Total estimado', cartPay:'🔒 Pagar ahora', cartKeep:'Seguir comprando',
+    payTitle:'Finalizar compra', payName:'Nombre completo', payAddr:'Dirección',
+    payCity:'Ciudad', payCard:'Número de tarjeta', payExp:'Caducidad',
+    payConfirm:'🔒 Confirmar pago', paySecure:'🔒 Pago 100% seguro — SSL encriptado',
+    payOkTitle:'¡Pedido confirmado!',
+    adminTitle:'Panel de administrador', adminEnter:'Entrar', adminCancel:'Cancelar',
+    addToCart:'+ Añadir al carrito',
+    searchPlaceholder:'Busca vestidos, trajes, camisas…',
+    searchCats:'Categorías', searchProds:'Productos', searchEmpty:'Sin resultados para',
+    searchHint:'Escribe para buscar categorías o productos',
+  },
+  en: {
+    navShop:'Shop', navCollections:'Collections', navAbout:'About', navContact:'Contact',
+    tabWomen:'Women', tabMen:'Men',
+    catDresses:'Dresses', catJumpsuits:'Jumpsuits', catSuits:'Suits', catTrousers:'Trousers',
+    catShirts:'Shirts', catJackets:'Jackets', catSee:'View collection →',
+    seeAll:'View all →',
+    followUs:'Follow us', onSocial:'On social <em>media</em>', followBtn:'Follow →',
+    viewMaps:'View on Google Maps',
+    footerCollections:'Collections', footerInfo:'Information', footerLegal:'Legal',
+    footerShipping:'Shipping', footerReturns:'Returns',
+    footerNotice:'Legal notice', footerPrivacy:'Privacy',
+    cartTitle:'Your selection', cartEmpty:'Your cart is empty',
+    cartEstimate:'Estimated total', cartPay:'🔒 Pay now', cartKeep:'Continue shopping',
+    payTitle:'Checkout', payName:'Full name', payAddr:'Address',
+    payCity:'City', payCard:'Card number', payExp:'Expiry',
+    payConfirm:'🔒 Confirm payment', paySecure:'🔒 100% secure payment — SSL encrypted',
+    payOkTitle:'Order confirmed!',
+    adminTitle:'Admin panel', adminEnter:'Enter', adminCancel:'Cancel',
+    addToCart:'+ Add to cart',
+    searchPlaceholder:'Search dresses, suits, shirts…',
+    searchCats:'Categories', searchProds:'Products', searchEmpty:'No results for',
+    searchHint:'Type to search categories or products',
+  }
+};
+
+let currentLang = 'es';
+
+function t(key){ return LANG[currentLang][key] || key; }
+
+function applyLang(){
+  const l = currentLang;
+  document.documentElement.lang = l;
+  // data-t text nodes
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.dataset.t;
+    if(LANG[l][key] !== undefined) el.innerHTML = LANG[l][key];
+  });
+  // data-t-placeholder
+  document.querySelectorAll('[data-t-placeholder]').forEach(el => {
+    const key = el.dataset.tPlaceholder;
+    if(LANG[l][key]) el.placeholder = LANG[l][key];
+  });
+  // Lang button
+  if(l === 'es'){
+    document.getElementById('lang-flag').textContent = '🇬🇧';
+    document.getElementById('lang-label').textContent = 'EN';
+  } else {
+    document.getElementById('lang-flag').textContent = '🇪🇸';
+    document.getElementById('lang-label').textContent = 'ES';
+  }
+  // Hero dynamic (only if not admin-customised)
+  if(l === 'en' && !heroCustomised){
+    document.getElementById('hero-eyebrow').textContent = 'New Collection 2026';
+    document.getElementById('hero-h1').innerHTML = 'Fashion born<br>in<br><em>Ibiza</em>';
+    document.getElementById('hero-desc').textContent = 'Elegant clothing for special occasions. From Sant Antoni, we bring the Mediterranean spirit to your wardrobe.';
+    document.getElementById('hero-btn1').textContent = 'View collections';
+    document.getElementById('hero-btn2').textContent = 'Our story';
+  } else if(l === 'es' && !heroCustomised){
+    document.getElementById('hero-eyebrow').textContent = 'Nueva Colección 2026';
+    document.getElementById('hero-h1').innerHTML = 'Moda que<br>nace en<br><em>Ibiza</em>';
+    document.getElementById('hero-desc').textContent = 'Ropa elegante para ocasiones especiales. Desde Sant Antoni, llevamos la esencia mediterránea a tu armario.';
+    document.getElementById('hero-btn1').textContent = 'Ver colecciones';
+    document.getElementById('hero-btn2').textContent = 'Nuestra historia';
+  }
+  // About section
+  if(l === 'en' && !aboutCustomised){
+    document.getElementById('nos-eyebrow').textContent = 'Our story';
+    document.getElementById('nos-title').innerHTML = 'Fashion with<br><em>Ibizan soul</em>';
+    document.getElementById('nos-p1').textContent = 'At Ibimoda Ibiza you will find elegant fashion for every special occasion. From Sant Antoni de Portmany, we curate the finest collections in high-quality fabrics.';
+    document.getElementById('nos-p2').textContent = 'We ship across Spain. Visit us in store or shop online and feel the essence of the Mediterranean.';
+    document.getElementById('nos-btn1').textContent = 'WhatsApp us';
+    document.getElementById('nos-btn2').textContent = 'View collections';
+  } else if(l === 'es' && !aboutCustomised){
+    document.getElementById('nos-eyebrow').textContent = 'Nuestra historia';
+    document.getElementById('nos-title').innerHTML = 'Moda con<br><em>alma ibicenca</em>';
+    document.getElementById('nos-p1').textContent = 'En Ibimoda Ibiza encontrarás moda elegante para cada ocasión. Desde Sant Antoni de Portmany, seleccionamos las mejores colecciones con tejidos de alta calidad.';
+    document.getElementById('nos-p2').textContent = 'Enviamos a toda la Península. Visítanos o compra online y siente la esencia del Mediterráneo.';
+    document.getElementById('nos-btn1').textContent = 'WhatsApp directo';
+    document.getElementById('nos-btn2').textContent = 'Ver colecciones';
+  }
+  // Features
+  if(!featCustomised){
+    const fd = l==='en'
+      ? ['📦','Shipping to Spain',`Delivery in ${LEGAL_CONTENT.envios.desde}–${LEGAL_CONTENT.envios.hasta} business days across mainland Spain.`,'🔒','Secure payment','Card and Bizum with 256-bit SSL encryption.','💬','Personal service','Message us on WhatsApp for personalised advice.']
+      : ['📦','Envíos a España',`Entrega en ${LEGAL_CONTENT.envios.desde}–${LEGAL_CONTENT.envios.hasta} días laborables a cualquier punto de la Península.`,'🔒','Pago seguro','Tarjeta y Bizum con cifrado SSL de 256 bits.','💬','Atención personal','Escríbenos por WhatsApp y te asesoramos al momento.'];
+    for(let i=1;i<=3;i++){
+      document.getElementById(`ft${i}-icon-el`).textContent=fd[(i-1)*3];
+      document.getElementById(`ft${i}-title-el`).textContent=fd[(i-1)*3+1];
+      document.getElementById(`ft${i}-desc-el`).textContent=fd[(i-1)*3+2];
+    }
+  }
+  // Section eyebrows / titles (if not admin-customised)
+  if(!catCustomised){
+    document.getElementById('cat-eyebrow').textContent = l==='en' ? 'Explore by category' : 'Explora por categoría';
+    document.getElementById('cat-title').innerHTML = l==='en' ? 'What are you <em>looking for?</em>' : '¿Qué estás <em>buscando?</em>';
+  }
+  if(!prodCustomised){
+    document.getElementById('prod-eyebrow').textContent = l==='en' ? 'Editorial selection' : 'Selección editorial';
+    document.getElementById('prod-title').innerHTML = l==='en' ? 'Featured <em>pieces</em>' : 'Piezas <em>destacadas</em>';
+  }
+  // Reviews eyebrow
+  document.getElementById('rev-eyebrow').textContent = l==='en' ? 'What our customers say' : 'Lo que dicen de nosotros';
+  // Announce bar
+  document.getElementById('announce-txt').textContent = l==='en'
+    ? 'Shipping across Spain · Free in-store pickup'
+    : 'Envíos a toda España · Recogida gratuita en tienda';
+  // Footer tagline
+  if(!footerCustomised)
+    document.getElementById('footer-tagline').textContent = l==='en'
+      ? 'Exclusive collections for women and men from Sant Antoni de Portmany, Ibiza.'
+      : 'Colecciones exclusivas para mujer y hombre desde Sant Antoni de Portmany, Ibiza.';
+  // Cart UI refresh
+  updateCartUI();
+  // Products re-render (for "Add to cart" button)
+  renderProducts();
+  // Actualizar banner de cookies al cambiar idioma
+  updateCookieBannerLang();
+  // Toast
+  showToast(l==='en' ? '🇬🇧 Switched to English' : '🇪🇸 Cambiado a Español');
+}
+
+function toggleLang(){
+  currentLang = currentLang === 'es' ? 'en' : 'es';
+  applyLang();
+}
+
+// flags to know if admin customised sections
+let heroCustomised=false, aboutCustomised=false, featCustomised=false, catCustomised=false, prodCustomised=false, footerCustomised=false;
+
+// ══════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════
+const PRODUCTS = [];
+let cart = [];
+const ADM_PASS = 'Njm1994.';
+const zoneData = {};
+
+// COVERS
+const COVERS = [
+  {key:'hero-main',    label:'Portada principal',    id:'img-hero-main'},
+  {key:'cat-vestidos', label:'Categoría Vestidos',   id:'img-cat-vestidos'},
+  {key:'cat-monos',    label:'Categoría Monos',      id:'img-cat-monos'},
+  {key:'cat-trajes-m', label:'Categoría Trajes (M)', id:'img-cat-trajes-m'},
+  {key:'cat-pantalones',label:'Categoría Pantalones',id:'img-cat-pantalones'},
+  {key:'cat-trajes-h', label:'Categoría Trajes (H)', id:'img-cat-trajes-h'},
+  {key:'cat-camisas',  label:'Categoría Camisas',    id:'img-cat-camisas'},
+  {key:'cat-chaquetas',label:'Categoría Chaquetas',  id:'img-cat-chaquetas'},
+];
+
+// ══ CLOUDINARY ══
+const CLD_CLOUD  = 'djudfepgz';
+const CLD_PRESET = 'ibimoda_uploads';
+
+async function uploadToCloudinary(file){
+  const fd = new FormData();
+  fd.append('file', file);
+  fd.append('upload_preset', CLD_PRESET);
+  const res = await fetch(`https://api.cloudinary.com/v1_1/${CLD_CLOUD}/image/upload`, {method:'POST', body:fd});
+  const data = await res.json();
+  if(data.secure_url) return data.secure_url;
+  throw new Error(data.error?.message || 'Upload failed');
+}
+
+function readFile(f,cb){const r=new FileReader();r.onload=e=>cb(e.target.result);r.readAsDataURL(f);}
+
+function loadZone(inp, key){
+  const f = inp.files[0]; if(!f) return;
+  inp.value = '';
+  readFile(f, data => applyZonePreview(key, data));
+  showToast('⏳ Subiendo imagen a Cloudinary...');
+  uploadToCloudinary(f)
+    .then(url => {
+      zoneData[key] = url;
+      showCloudinaryUrl(key, url);
+      showToast('✅ Imagen guardada — copia la URL y aplícala');
+    })
+    .catch(err => {
+      console.error('Cloudinary error:', err);
+      showToast('⚠️ Error al subir la imagen');
+    });
+}
+
+function dropZone(e, key){
+  e.preventDefault(); e.currentTarget.classList.remove('drag');
+  const f = e.dataTransfer.files[0];
+  if(!f || !f.type.startsWith('image/')) return;
+  readFile(f, data => applyZonePreview(key, data));
+  showToast('⏳ Subiendo imagen a Cloudinary...');
+  uploadToCloudinary(f)
+    .then(url => {
+      zoneData[key] = url;
+      showCloudinaryUrl(key, url);
+      showToast('✅ Imagen guardada — copia la URL y aplícala');
+    })
+    .catch(() => showToast('⚠️ Error al subir la imagen'));
+}
+
+function showCloudinaryUrl(key, url){
+  // Mostrar URL copiable y botón de aplicar directo según el tipo
+  const boxId = 'cld-url-box-'+key;
+  let box = document.getElementById(boxId);
+  if(!box){
+    // Crear caja de URL dinámica según contexto
+    box = document.createElement('div');
+    box.id = boxId;
+    box.style.cssText = 'margin-top:.6rem;background:#f0fff4;border:1px solid #25d366;border-radius:3px;padding:.8rem;';
+  }
+  box.innerHTML = `
+    <div style="font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#25d366;margin-bottom:.4rem">✅ URL permanente de Cloudinary</div>
+    <div style="display:flex;gap:.4rem;align-items:center">
+      <input type="text" value="${url}" readonly id="cld-inp-${key}"
+        style="flex:1;padding:.5rem .7rem;border:1px solid #ccc;font-family:'Jost',sans-serif;font-size:.72rem;border-radius:2px;background:#fff;color:#333;outline:none">
+      <button onclick="copyCloudinaryUrl('${key}')"
+        style="background:#25d366;color:#fff;border:none;padding:.5rem .9rem;font-family:'Jost',sans-serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;white-space:nowrap">
+        📋 Copiar
+      </button>
+    </div>
+    <button onclick="applyCloudinaryUrl('${key}')"
+      style="margin-top:.5rem;width:100%;background:var(--terra);color:#fff;border:none;padding:.6rem;font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border-radius:2px">
+      ✓ Aplicar imagen ahora
+    </button>`;
+
+  // Insertar después de la zona de subida según el contexto
+  if(key === 'prod'){
+    const urlInp = document.getElementById('url-prod');
+    if(urlInp){ urlInp.value = url; urlInp.closest('.form-row') && urlInp.closest('.form-row').after(box); }
+    else { document.getElementById('fz-prod').after(box); }
+  } else if(key === 'newcat'){
+    const urlInp = document.getElementById('url-newcat');
+    if(urlInp){ urlInp.value = url; urlInp.parentNode && urlInp.parentNode.appendChild(box); }
+  } else {
+    // Cover images
+    const urlInp = document.getElementById('url-'+key);
+    if(urlInp){ urlInp.value = url; urlInp.parentNode && urlInp.parentNode.appendChild(box); }
+    else { document.getElementById('fz-'+key) && document.getElementById('fz-'+key).after(box); }
+  }
+}
+
+function copyCloudinaryUrl(key){
+  const inp = document.getElementById('cld-inp-'+key);
+  if(!inp) return;
+  inp.select();
+  try {
+    navigator.clipboard.writeText(inp.value).then(()=>showToast('📋 URL copiada al portapapeles'));
+  } catch(e){
+    document.execCommand('copy');
+    showToast('📋 URL copiada al portapapeles');
+  }
+}
+
+function applyCloudinaryUrl(key){
+  const url = zoneData[key];
+  if(!url){ showToast('⚠️ No hay URL disponible'); return; }
+  // Aplicar según contexto
+  if(key === 'prod'){
+    const urlInp = document.getElementById('url-prod');
+    if(urlInp) urlInp.value = url;
+    showToast('✅ URL aplicada al producto');
+  } else if(key === 'newcat'){
+    const urlInp = document.getElementById('url-newcat');
+    if(urlInp) urlInp.value = url;
+    showToast('✅ URL aplicada a la categoría');
+  } else {
+    // Cover
+    const cover = COVERS.find(c => c.key === key);
+    if(cover){
+      const el = document.getElementById(cover.id);
+      if(el){ el.src = url; showToast('✅ Imagen de portada actualizada permanentemente'); }
+      const urlInp = document.getElementById('url-'+key);
+      if(urlInp) urlInp.value = url;
+    }
+  }
+}
+
+function applyZonePreview(key, data){
+  if(key==='prod'){
+    const th=document.getElementById('fz-prod-thumb');th.src=data;th.style.display='block';
+    document.getElementById('fz-prod-txt').style.display='none';
+  } else if(key==='logo'){
+    const th=document.getElementById('fz-logo-thumb');th.src=data;th.style.display='block';
+    document.getElementById('fz-logo-txt').style.display='none';
+    document.getElementById('logo-prev-img').src=data;
+    document.getElementById('logo-preview-wrap').style.display='block';
+  } else if(key==='newcat'){
+    const th=document.getElementById('fz-newcat-thumb');th.src=data;th.style.display='block';
+    document.getElementById('fz-newcat-txt').style.display='none';
+  } else {
+    const th=document.getElementById('cth-'+key);const tx=document.getElementById('ctx-'+key);
+    if(th){th.src=data;th.style.display='block';}if(tx)tx.style.display='none';
+  }
+}
+
+function applyZone(key, data){ zoneData[key]=data; applyZonePreview(key,data); }
+
+
+
+function previewLogoUrl(url){
+  if(!url.trim()) return;
+  const prev = document.getElementById('logo-url-preview');
+  const img  = document.getElementById('logo-url-prev-img');
+  if(prev && img){ img.src=url.trim(); prev.style.display='block'; }
+}
+
+function applyLogoUrl(){
+  const url = document.getElementById('url-logo').value.trim();
+  if(!url){ showToast('⚠️ Pega una URL válida'); return; }
+  setLogo(url);
+  showToast('✅ Logo aplicado permanentemente');
+}
+
+
+function setLogo(data){
+  const li=document.getElementById('logo-img');li.src=data;li.style.display='block';
+  document.getElementById('logo-text-default').style.display='none';
+  const fi=document.getElementById('footer-logo-img');fi.src=data;fi.style.display='block';
+  document.getElementById('footer-logo-text').style.display='none';
+  
+}
+function applyLogo(){if(!zoneData['logo']){showToast('⚠️ Selecciona primero el logo');return;}setLogo(zoneData['logo']);}
+function removeLogo(){
+  document.getElementById('logo-img').style.display='none';document.getElementById('logo-text-default').style.display='flex';
+  document.getElementById('footer-logo-img').style.display='none';document.getElementById('footer-logo-text').style.display='block';
+  delete zoneData['logo'];document.getElementById('fz-logo-thumb').style.display='none';document.getElementById('fz-logo-txt').style.display='block';
+  document.getElementById('logo-preview-wrap').style.display='none';showToast('Logo de texto restaurado');
+}
+
+// ══ COVER GRID ══
+function buildCoverGrid(){
+  document.getElementById('cover-grid').innerHTML=COVERS.map(c=>`
+    <div class="cover-item">
+      <div class="cover-item-label">${c.label}</div>
+      <div style="display:flex;gap:.4rem;align-items:center">
+        <input type="text" id="url-${c.key}" placeholder="https://res.cloudinary.com/..."
+          style="flex:1;padding:.65rem .8rem;border:1px solid var(--border);font-family:'Jost',sans-serif;font-size:.78rem;border-radius:2px;outline:none;color:var(--ink)"
+          onfocus="this.style.borderColor='var(--terra)'" onblur="this.style.borderColor='var(--border)'"
+          onkeydown="if(event.key==='Enter')applyUrlCover('${c.key}','${c.id}')">
+        <button onclick="applyUrlCover('${c.key}','${c.id}')"
+          style="background:var(--terra);color:#fff;border:none;padding:.65rem 1rem;font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;white-space:nowrap">
+          ✓ Aplicar
+        </button>
+      </div>
+      <div id="cover-preview-${c.key}" style="display:none;margin-top:.5rem;border-radius:2px;overflow:hidden;height:80px">
+        <img id="cover-prev-img-${c.key}" style="width:100%;height:100%;object-fit:cover" alt="">
+      </div>
+    </div>`).join('');
+}
+
+function applyUrlCover(key, imgId){
+  const url = document.getElementById('url-'+key).value.trim();
+  if(!url){ showToast('⚠️ Pega una URL válida'); return; }
+  const el = document.getElementById(imgId);
+  if(el){ el.src = url; }
+  zoneData[key] = url;
+  // Mostrar preview en admin
+  const prev = document.getElementById('cover-preview-'+key);
+  const prevImg = document.getElementById('cover-prev-img-'+key);
+  if(prev && prevImg){ prevImg.src=url; prev.style.display='block'; }
+  showToast('✅ Imagen aplicada permanentemente');
+}
+function applycover(key,imgId){const data=zoneData[key];if(!data)return;const el=document.getElementById(imgId);if(el){el.src=data;showToast('✅ Imagen actualizada');}}
+
+// ══ ADMIN ══
+function openAdmLogin(){document.getElementById('login-overlay').classList.add('open');setTimeout(()=>document.getElementById('adm-pass-inp').focus(),100);}
+function checkPass(){
+  if(document.getElementById('adm-pass-inp').value===ADM_PASS){
+    document.getElementById('login-overlay').classList.remove('open');
+    document.getElementById('adm-pass-inp').value='';
+    document.getElementById('adm-overlay').classList.add('open');
+    buildCoverGrid();renderAdmList();renderCatList();
+  }else{showToast('⚠️ Contraseña incorrecta');document.getElementById('adm-pass-inp').value='';}
+}
+function closeAdm(){document.getElementById('adm-overlay').classList.remove('open');}
+function switchAdmTab(name,btn){
+  document.querySelectorAll('.adm-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');
+  document.querySelectorAll('.adm-pane').forEach(p=>p.classList.remove('active'));
+  document.getElementById('adm-'+name).classList.add('active');
+}
+
+// ══ TEXT EDITORS ══
+function applyAnuncio(){document.getElementById('announce-txt').textContent=document.getElementById('txt-announce').value.trim();showToast('✅ Anuncio actualizado');}
+function applyHero(){
+  heroCustomised=true;
+  const l1=document.getElementById('txt-hero-l1').value,l2=document.getElementById('txt-hero-l2').value,l3=document.getElementById('txt-hero-l3').value;
+  document.getElementById('hero-eyebrow').textContent=document.getElementById('txt-hero-eye').value;
+  document.getElementById('hero-h1').innerHTML=`${l1}<br>${l2}<br><em>${l3}</em>`;
+  document.getElementById('hero-desc').textContent=document.getElementById('txt-hero-desc').value;
+  document.getElementById('hero-btn1').textContent=document.getElementById('txt-hero-btn1').value;
+  document.getElementById('hero-btn2').textContent=document.getElementById('txt-hero-btn2').value;
+  showToast('✅ Hero actualizado');
+}
+function applyCat(){
+  catCustomised=true;
+  document.getElementById('cat-eyebrow').textContent=document.getElementById('txt-cat-eye').value;
+  document.getElementById('cat-title').innerHTML=`${document.getElementById('txt-cat-t1').value} <em>${document.getElementById('txt-cat-t2').value}</em>`;
+  showToast('✅ Categorías actualizadas');
+}
+function applyProd(){
+  prodCustomised=true;
+  document.getElementById('prod-eyebrow').textContent=document.getElementById('txt-prod-eye').value;
+  document.getElementById('prod-title').innerHTML=`${document.getElementById('txt-prod-t1').value} <em>${document.getElementById('txt-prod-t2').value}</em>`;
+  showToast('✅ Productos actualizados');
+}
+function applyNosotros(){
+  aboutCustomised=true;
+  document.getElementById('nos-eyebrow').textContent=document.getElementById('txt-nos-eye').value;
+  document.getElementById('nos-title').innerHTML=`${document.getElementById('txt-nos-t1').value}<br><em>${document.getElementById('txt-nos-t2').value}</em>`;
+  document.getElementById('nos-p1').textContent=document.getElementById('txt-nos-p1').value;
+  document.getElementById('nos-p2').textContent=document.getElementById('txt-nos-p2').value;
+  document.getElementById('nos-btn1').textContent=document.getElementById('txt-nos-btn1').value;
+  document.getElementById('nos-btn2').textContent=document.getElementById('txt-nos-btn2').value;
+  showToast('✅ Nosotros actualizado');
+}
+function applyFeatures(){
+  featCustomised=true;
+  for(let i=1;i<=3;i++){
+    document.getElementById(`ft${i}-icon-el`).textContent=document.getElementById(`ft${i}-icon`).value;
+    document.getElementById(`ft${i}-title-el`).textContent=document.getElementById(`ft${i}-title`).value;
+    document.getElementById(`ft${i}-desc-el`).textContent=document.getElementById(`ft${i}-desc`).value;
+  }
+  showToast('✅ Características actualizadas');
+}
+function applyContacto(){
+  const tel       = document.getElementById('contact-tel').value.trim();
+  const wa        = document.getElementById('contact-wa').value.trim().replace(/\D/g,'');
+  const waDisplay = document.getElementById('contact-wa-display').value.trim();
+  const email     = document.getElementById('contact-email').value.trim();
+  const addr      = document.getElementById('contact-addr').value.trim();
+  if(!tel||!wa||!email){showToast('⚠️ Completa los campos obligatorios');return;}
+
+  const waUrl = 'https://wa.me/'+wa+'?text=Hola%20Ibimoda%20Ibiza%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n.';
+
+  // Barra de contacto
+  document.getElementById('tel-link').href            = 'tel:'+tel.replace(/\s/g,'');
+  document.getElementById('tel-text').textContent     = tel;
+  document.getElementById('wa-contact-link').href     = waUrl;
+  document.getElementById('wa-contact-text').textContent = waDisplay||tel;
+  document.getElementById('email-contact-link').href  = 'mailto:'+email;
+  document.getElementById('email-contact-text').textContent = email;
+  document.getElementById('addr-text').textContent    = addr;
+
+  // Modal de contacto
+  document.getElementById('cm-tel').href      = 'tel:'+tel.replace(/\s/g,'');
+  document.getElementById('cm-tel-text').textContent  = tel;
+  document.getElementById('cm-wa').href       = waUrl;
+  document.getElementById('cm-wa-text').textContent   = waDisplay||tel;
+  document.getElementById('cm-email').href    = 'mailto:'+email;
+  document.getElementById('cm-email-text').textContent = email;
+  document.getElementById('cm-addr-text').textContent = addr;
+
+  // WA links generales
+  document.getElementById('wa-link').href     = waUrl;
+  document.getElementById('nos-btn1').href    = 'https://wa.me/'+wa;
+  document.getElementById('wa-footer').href   = 'https://wa.me/'+wa;
+
+  showToast('✅ Contacto actualizado');
+}
+function applyPlazoEnvio(){
+  const desde=parseInt(document.getElementById('envio-desde').value)||3;
+  const hasta=parseInt(document.getElementById('envio-hasta').value)||6;
+  if(desde>hasta){showToast('⚠️ El mínimo no puede superar el máximo');return;}
+  LEGAL_CONTENT.envios.desde=desde;LEGAL_CONTENT.envios.hasta=hasta;
+  if(!featCustomised) applyLang(); // refresh features with new days
+  showToast(`✅ Plazo actualizado a ${desde}–${hasta} días`);
+}
+function applyFooter(){
+  footerCustomised=true;
+  document.getElementById('footer-tagline').textContent=document.getElementById('txt-footer-tag').value;
+  const lines=document.getElementById('txt-colecciones').value.split('\n').map(l=>l.trim()).filter(Boolean);
+  document.getElementById('footer-colecciones').innerHTML=lines.map(l=>`<li><span class="footer-plain">${l}</span></li>`).join('');
+  const sep='<span style="color:rgba(250,248,244,.4)">✦</span>';
+  const items=lines.map(l=>`<span>${l}</span>`).join(sep)+sep+'<span>Ibimoda Ibiza</span>'+sep;
+  document.getElementById('marquee-inner').innerHTML=items+items;
+  showToast('✅ Footer actualizado');
+}
+function applyTexto(key){
+  if(key==='envios'){LEGAL_CONTENT.envios.title=document.getElementById('txt-envios-title').value;LEGAL_CONTENT.envios.customBody='<p>'+document.getElementById('txt-envios-body').value.replace(/\n\n/g,'</p><p style="margin-top:.8rem">').replace(/\n/g,'<br>')+'</p>';}
+  else{LEGAL_CONTENT.devoluciones.title=document.getElementById('txt-devol-title').value;LEGAL_CONTENT.devoluciones.body='<p>'+document.getElementById('txt-devol-body').value.replace(/\n\n/g,'</p><p style="margin-top:.8rem">').replace(/\n/g,'<br>')+'</p>';}
+  showToast('✅ Texto actualizado');
+}
+
+function previewProdUrl(url){
+  if(!url.trim()) return;
+  zoneData['prod'] = url.trim();
+  const prev = document.getElementById('prod-url-preview');
+  const img  = document.getElementById('prod-url-prev-img');
+  if(prev && img){ img.src=url.trim(); prev.style.display='block'; }
+}
+
+function previewCatUrl(url){
+  if(!url.trim()) return;
+  zoneData['newcat'] = url.trim();
+  const prev = document.getElementById('newcat-url-preview');
+  const img  = document.getElementById('newcat-url-prev-img');
+  if(prev && img){ img.src=url.trim(); prev.style.display='block'; }
+}
+
+
+function addProduct(){
+  const name=document.getElementById('adm-name').value.trim();
+  const price=parseFloat(document.getElementById('adm-price').value);
+  if(!name||!price){showToast('⚠️ Rellena nombre y precio');return;}
+  PRODUCTS.unshift({id:Date.now(),name,brand:document.getElementById('adm-brand').value,cat:document.getElementById('adm-cat').value,price,old:parseFloat(document.getElementById('adm-old').value)||undefined,tag:document.getElementById('adm-tag').value,featured:document.getElementById('adm-feat').checked,desc:document.getElementById('adm-desc').value.trim(),img:zoneData['prod']||'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&q=80'});
+  renderProducts();renderAdmList();
+  ['adm-name','adm-price','adm-old','adm-desc'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('adm-tag').value='';document.getElementById('adm-feat').checked=false;
+  delete zoneData['prod'];document.getElementById('fz-prod-thumb').style.display='none';document.getElementById('fz-prod-txt').style.display='block';
+  showToast(`✅ "${name}" añadido`);
+}
+function toggleFeat(id){const p=PRODUCTS.find(x=>x.id===id);if(!p)return;p.featured=!p.featured;renderProducts();renderAdmList();showToast(p.featured?'⭐ Destacado':'Quitado');}
+function removeProduct(id){const i=PRODUCTS.findIndex(p=>p.id===id);if(i<0)return;PRODUCTS.splice(i,1);renderProducts();renderAdmList();showToast('Producto eliminado');}
+function renderProducts(){
+  const grid=document.getElementById('products-grid');
+  const feat=PRODUCTS.filter(p=>p.featured);
+  const emptyMsg=currentLang==='en'?'Featured pieces coming soon':'Próximamente nuevas piezas destacadas';
+  if(!feat.length){grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-family:'Playfair Display',serif;font-style:italic">${emptyMsg}</div>`;return;}
+  grid.innerHTML=feat.map(p=>`
+    <div class="prod-card" onclick="openProdModal('${p.id}')" style="cursor:pointer">
+      <div class="prod-img-wrap"><img src="${p.img}" alt="${p.name}" loading="lazy">
+        ${p.tag?`<div class="prod-tag">${p.tag}</div>`:''}
+        <button class="prod-quick" onclick="event.stopPropagation();addToCart('${p.id}')">${t('addToCart')}</button>
+      </div>
+      <div class="prod-info"><div class="prod-brand">${p.brand}</div><div class="prod-name">${p.name}</div>${p.desc?`<div class="prod-desc">${p.desc}</div>`:''}<div class="prod-price">${p.old?`<s>€${p.old}</s>`:''} €${p.price}</div></div>
+    </div>`).join('');
+}
+function renderAdmList(){
+  const el=document.getElementById('adm-prod-list');
+  if(!PRODUCTS.length){el.innerHTML='<p style="font-size:.82rem;color:var(--muted)">No hay productos.</p>';return;}
+  el.innerHTML=PRODUCTS.map(p=>`
+    <div style="display:flex;align-items:center;gap:.8rem;padding:.7rem 0;border-bottom:1px solid var(--border)">
+      <img src="${p.img}" style="width:44px;height:54px;object-fit:cover;border-radius:2px" alt="">
+      <div style="flex:1"><div style="font-size:.83rem;font-weight:500">${p.name} ${p.featured?'⭐':''}</div><div style="font-size:.72rem;color:var(--muted)">${p.brand} · €${p.price}</div></div>
+      <button onclick="toggleFeat('${p.id}')" style="background:none;border:1px solid var(--border);border-radius:2px;padding:.2rem .6rem;font-size:.68rem;cursor:pointer;color:${p.featured?'var(--terra)':'var(--muted)'}">${p.featured?'⭐':'☆'}</button>
+      <button onclick="removeProduct('${p.id}')" style="background:none;border:none;color:var(--terra);cursor:pointer;font-size:.9rem">✕</button>
+    </div>`).join('');
+}
+
+// ══ CART ══
+function addToCartWithTalla(id, talla) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p) return;
+  const cartId = talla ? id + '_' + talla : id;
+  const ex = cart.find(x => x.cartId === cartId);
+  if (ex) { ex.qty++; }
+  else { cart.push({...p, cartId, talla, qty:1}); }
+  updateCartUI();
+  showToast('Producto añadido a la cesta' + (talla ? ' — Talla ' + talla : ''), 'cart');
+}
+function addToCart(id){const p=PRODUCTS.find(x=>x.id===id);if(!p)return;const ex=cart.find(x=>x.id===id);if(ex)ex.qty++;else cart.push({...p,qty:1});updateCartUI();showToast('Producto añadido a la cesta', 'cart');}
+function changeQty(id,d){const item=cart.find(x=>(x.cartId||x.id)===id);if(!item)return;item.qty+=d;if(item.qty<=0)cart=cart.filter(x=>x.id!==id);updateCartUI();}
+function updateCartUI(){
+  const tot=cart.reduce((s,c)=>s+c.qty,0);
+  document.getElementById('cart-dot').textContent=tot;
+  const body=document.getElementById('cart-body');const foot=document.getElementById('cart-footer');
+  document.querySelector('[data-t="cartTitle"]').innerHTML=t('cartTitle');
+  document.querySelector('[data-t="cartEstimate"]').innerHTML=t('cartEstimate');
+  document.querySelector('[data-t="cartPay"]').innerHTML=t('cartPay');
+  const keeps=document.querySelectorAll('[data-t="cartKeep"]');keeps.forEach(k=>k.innerHTML=t('cartKeep'));
+  if(!cart.length){body.innerHTML=`<div class="cart-empty-msg">${t('cartEmpty')}</div>`;foot.style.display='none';return;}
+  foot.style.display='block';
+  body.innerHTML=cart.map(item=>`
+    <div class="cart-item-row">
+      <div class="cart-item-thumb"><img src="${item.img}" alt="${item.name}"></div>
+      <div><div class="item-brand">${item.brand}</div><div class="item-name">${item.name}${item.talla?' <span style="font-size:.72rem;color:var(--terra);margin-left:.3rem">('+item.talla+')</span>':''}</div><div class="item-price">€${(item.price*item.qty).toFixed(2)}</div></div>
+      <div class="cart-qty"><button class="qty-btn" onclick="changeQty('${item.cartId||item.id}',1)">+</button><span style="font-size:.85rem;font-weight:500">${item.qty}</span><button class="qty-btn" onclick="changeQty('${item.cartId||item.id}',-1)">−</button></div>
+    </div>`).join('');
+  const subtotal = cart.reduce((s,c)=>s+c.price*c.qty,0);
+  const shipping  = subtotal >= 100 ? 0 : 4.95;
+  const total     = subtotal + shipping;
+  const subEl  = document.getElementById('cart-subtotal');
+  const shipEl = document.getElementById('cart-shipping');
+  const totEl  = document.getElementById('cart-total');
+  if(subEl)  subEl.textContent  = `€${subtotal.toFixed(2)}`;
+  if(shipEl) shipEl.innerHTML   = shipping === 0
+    ? `<span style='color:var(--sea);font-weight:500'>Gratuito</span>`
+    : `€${shipping.toFixed(2)}`;
+  if(totEl)  totEl.textContent  = `€${total.toFixed(2)}`;
+}
+function openCart(){document.getElementById('cart-sidebar').classList.add('open');document.getElementById('overlay-bg').classList.add('open');}
+function closeCart(){document.getElementById('cart-sidebar').classList.remove('open');document.getElementById('overlay-bg').classList.remove('open');}
+
+// ══ PAYMENT ══
+const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/dRmcN4fRJ2Fzbcg8i4bV600';
+
+function openPayment(){
+  closeCart();
+  const subtotal = cart.reduce((s,c) => s+c.price*c.qty, 0);
+  const shipping  = subtotal >= 100 ? 0 : 4.95;
+  const total     = subtotal + shipping;
+  let html = `<h4>${t('cartEstimate')}</h4>`;
+  cart.forEach(c => {
+    html += `<div class="order-item"><span>${c.name}${c.talla?' ('+c.talla+')':''} ×${c.qty}</span><span>€${(c.price*c.qty).toFixed(2)}</span></div>`;
+  });
+  html += `<div class="order-item" style="color:var(--muted)"><span>Envío</span><span>${shipping===0?'<span style="color:var(--sea)">Gratuito</span>':'€4,95'}</span></div>`;
+  html += `<div class="order-total"><span>Total</span><span>€${total.toFixed(2)}</span></div>`;
+  document.getElementById('order-summary').innerHTML = html;
+  document.querySelector('[data-t="payTitle"]').innerHTML = t('payTitle');
+  document.querySelector('[data-t="payName"]').innerHTML = t('payName');
+  document.querySelector('[data-t="payConfirm"]').innerHTML = t('payConfirm');
+  document.querySelector('[data-t="paySecure"]').innerHTML = t('paySecure');
+  document.getElementById('pay-form').style.display = 'block';
+  document.getElementById('pay-ok').style.display = 'none';
+  document.getElementById('pay-modal').classList.add('open');
+}
+
+function closePayment(){ document.getElementById('pay-modal').classList.remove('open'); }
+
+function handleStripePayment(){
+  const name  = document.getElementById('p-name').value.trim();
+  const email = document.getElementById('p-email').value.trim();
+  if(!name || !email){
+    showToast('⚠️ ' + (currentLang==='en' ? 'Please fill your name and email' : 'Rellena tu nombre y email'));
+    return;
+  }
+
+  const subtotal = cart.reduce((s,c) => s+c.price*c.qty, 0);
+  const shipping  = subtotal >= 100 ? 0 : 4.95;
+  const total     = subtotal + shipping;
+  const orderId  = 'IBI-' + Date.now().toString().slice(-6);
+  const d = LEGAL_CONTENT.envios.desde||3, h = LEGAL_CONTENT.envios.hasta||6;
+  const itemsList = cart.map(c => `• ${c.name}${c.talla?' ('+c.talla+')':''} x${c.qty} — €${(c.price*c.qty).toFixed(2)}`).join('\n');
+  // Guardar en sessionStorage para recuperar tras redireccion a Stripe
+  try {
+    sessionStorage.setItem('ibimoda_pending_order', JSON.stringify({
+      orderId, name, email, itemsList,
+      total: `€${total.toFixed(2)}`,
+      days: `${d}–${h} días laborables`
+    }));
+  } catch(e){}
+
+  const btn = document.getElementById('pay-submit-btn');
+  btn.innerHTML = '⏳ Procesando...';
+  btn.disabled = true;
+
+  // Build cart items including shipping
+  const items = cart.map(c => ({
+    name:  c.name + (c.talla ? ' ('+c.talla+')' : ''),
+    brand: c.brand || '',
+    price: c.price,
+    qty:   c.qty,
+    img:   c.img || '',
+  }));
+
+  // Add shipping as line item if applicable
+  if(shipping > 0){
+    items.push({ name: 'Envío', brand: '', price: shipping, qty: 1, img: '' });
+  }
+
+  fetch('/.netlify/functions/create-checkout', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      items,
+      customerEmail: email,
+      successUrl: window.location.origin + '?pago=ok',
+      cancelUrl:  window.location.origin + '?pago=cancelado',
+    })
+  })
+  .then(r => r.json())
+  .then(data => {
+    if(data.url){
+      cart = [];
+      updateCartUI();
+      closePayment();
+      window.location.href = data.url;
+    } else {
+      throw new Error(data.error || 'Error desconocido');
+    }
+  })
+  .catch(err => {
+    console.error('Stripe error:', err);
+    showToast('⚠️ Error al conectar con la pasarela de pago. Inténtalo de nuevo.');
+    btn.innerHTML = '🔒 Confirmar pago';
+    btn.disabled = false;
+  });
+}
+
+function checkStripeReturn(){
+  const params = new URLSearchParams(window.location.search);
+  if(params.get('pago') === 'ok'){
+    // Recuperar datos del pedido guardados antes de redirigir a Stripe
+    try {
+      const pendingOrder = JSON.parse(sessionStorage.getItem('ibimoda_pending_order') || 'null');
+      if(pendingOrder){
+        // Enviar email de confirmacion via EmailJS
+        emailjs.send('service_y5j5u45', 'el4qgin', {
+          to_name:       pendingOrder.name,
+          to_email:      pendingOrder.email,
+          order_id:      pendingOrder.orderId,
+          order_items:   pendingOrder.itemsList,
+          order_total:   pendingOrder.total,
+          delivery_days: pendingOrder.days,
+        }).catch(err => console.warn('EmailJS error:', err));
+
+        // Guardar en panel admin
+        saveOrder(
+          pendingOrder.orderId,
+          pendingOrder.name,
+          pendingOrder.email,
+          pendingOrder.itemsList,
+          pendingOrder.total,
+          pendingOrder.days
+        );
+
+        sessionStorage.removeItem('ibimoda_pending_order');
+      }
+    } catch(e){ console.warn('Order recovery error:', e); }
+
+    showToast('✅ ¡Pago completado! Gracias por tu compra.');
+    // Mostrar modal de confirmacion
+    document.getElementById('pay-form').style.display = 'none';
+    document.getElementById('pay-ok').style.display = 'block';
+    document.getElementById('pay-modal').classList.add('open');
+    window.history.replaceState({}, '', window.location.pathname);
+  }
+}
+
+function fmtCard(el){let v=el.value.replace(/\D/g,'').slice(0,16);el.value=v.replace(/(.{4})/g,'$1 ').trim();}
+function fmtExp(el){let v=el.value.replace(/\D/g,'');if(v.length>=2)v=v.slice(0,2)+'/'+v.slice(2,4);el.value=v;}
+
+// ══ REVIEWS ══
+const REVIEWS=[
+  {ini:'M',grad:'linear-gradient(135deg,var(--terra),var(--sea))',name:'María G.',ago:'Hace 2 semanas',stars:5,text:'"Tienda preciosa con ropa de mucha calidad. El trato es excelente y me ayudaron a encontrar el vestido perfecto para una boda. ¡Volveré seguro!"'},
+  {ini:'L',grad:'linear-gradient(135deg,#f5a623,var(--terra))',name:'Laura P.',ago:'Hace 1 mes',stars:5,text:'"La mejor tienda de moda de Sant Antoni. Tienen marcas exclusivas que no encuentras en otro sitio. Los precios son muy razonables para la calidad."'},
+  {ini:'A',grad:'linear-gradient(135deg,var(--sea),#25d366)',name:'Ana R.',ago:'Hace 2 meses',stars:5,text:'"Compré un vestido de Sonia Peña para una comunión y fue todo un éxito. Atención personalizada y muy profesional. Totalmente recomendable."'},
+  {ini:'C',grad:'linear-gradient(135deg,#e06060,var(--terra))',name:'Carmen S.',ago:'Hace 3 meses',stars:5,text:'"Encontré el traje perfecto para mi marido en Ibimoda. Gran variedad de marcas y el personal es encantador y muy profesional."'},
+  {ini:'R',grad:'linear-gradient(135deg,#60a0e0,var(--sea))',name:'Rosa M.',ago:'Hace 3 meses',stars:5,text:'"Compré online y llegó en 2 días. La prenda era exactamente como en las fotos. Muy buena experiencia, repetiré sin duda."'},
+  {ini:'P',grad:'linear-gradient(135deg,#a0e060,#25d366)',name:'Paula T.',ago:'Hace 4 meses',stars:4,text:'"Buena selección de marcas nacionales. El vestido llegó bien embalado y en perfecto estado. El servicio al cliente por WhatsApp fue muy rápido."'},
+  {ini:'S',grad:'linear-gradient(135deg,#c060e0,var(--terra))',name:'Sandra V.',ago:'Hace 4 meses',stars:5,text:'"Llevaba tiempo buscando un mono elegante para una cena de empresa y aquí lo encontré al momento. La atención fue de diez, muy amables y sin agobiar."'},
+  {ini:'I',grad:'linear-gradient(135deg,var(--terra),#f5a623)',name:'Isabel M.',ago:'Hace 5 meses',stars:5,text:'"Me enamoré de un vestido de Paz Torras que vi en el escaparate. La dependienta me ayudó a combinarlo perfectamente. Quedé preciosa en la boda."'},
+  {ini:'N',grad:'linear-gradient(135deg,#25d366,var(--sea))',name:'Nuria C.',ago:'Hace 5 meses',stars:5,text:'"Compré por WhatsApp desde Madrid y fue todo muy fácil. Me enviaron fotos de las tallas disponibles, hice el pedido y llegó antes de lo esperado."'},
+  {ini:'E',grad:'linear-gradient(135deg,var(--sea),#e06060)',name:'Elena F.',ago:'Hace 6 meses',stars:5,text:'"Ibimoda tiene un gusto exquisito en la selección de marcas. Todo lo que hay en la tienda es bonito y de calidad. Ya es mi tienda de referencia en Ibiza."'},
+  {ini:'J',grad:'linear-gradient(135deg,#f5a623,#60a0e0)',name:'Jorge B.',ago:'Hace 6 meses',stars:4,text:'"Fui a buscar un traje para mi boda y me atendieron de maravilla. La variedad de tallas era buena y el precio muy competitivo para la calidad del tejido."'},
+  {ini:'T',grad:'linear-gradient(135deg,var(--terra-l),var(--sea))',name:'Teresa A.',ago:'Hace 7 meses',stars:5,text:'"Siempre que vengo a Ibiza me paso por Ibimoda. Las colecciones cambian y siempre hay algo bonito. Esta vez me llevé un vestido de Carla Ruiz precioso."'},
+];
+let revIdx=0;const PER=2;
+function buildReviews(){
+  document.getElementById('rev-track').innerHTML=REVIEWS.map(r=>`
+    <div class="rev-slide">
+      <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1rem">
+        <div style="width:42px;height:42px;border-radius:50%;background:${r.grad};display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:.95rem;flex-shrink:0">${r.ini}</div>
+        <div><div style="font-size:.88rem;font-weight:500">${r.name}</div><div style="font-size:.72rem;color:var(--muted)">${r.ago}</div></div>
+        <div style="margin-left:auto;color:#f5a623;font-size:.9rem;white-space:nowrap">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
+      </div>
+      <p style="font-size:.83rem;color:var(--muted);line-height:1.7">${r.text}</p>
+    </div>`).join('');
+  const pages=Math.ceil(REVIEWS.length/PER);
+  document.getElementById('rev-dots').innerHTML=Array.from({length:pages},(_,i)=>`<button class="rev-dot${i===0?' active':''}" onclick="revGo(${i})"></button>`).join('');
+  updateRev();
+}
+function revMove(d){const pages=Math.ceil(REVIEWS.length/PER);revIdx=Math.max(0,Math.min(pages-1,revIdx+d));updateRev();}
+function revGo(i){revIdx=i;updateRev();}
+function updateRev(){
+  const track=document.getElementById('rev-track');const slides=track.querySelectorAll('.rev-slide');if(!slides.length)return;
+  const w=slides[0].getBoundingClientRect().width+12;track.style.transform=`translateX(-${revIdx*PER*w}px)`;
+  const pages=Math.ceil(REVIEWS.length/PER);
+  document.querySelectorAll('.rev-dot').forEach((d,i)=>d.classList.toggle('active',i===revIdx));
+  document.getElementById('rev-prev').disabled=revIdx===0;document.getElementById('rev-next').disabled=revIdx>=pages-1;
+}
+
+// ══ GENDER TABS ══
+function switchGender(g,btn){
+  document.querySelectorAll('.gender-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');
+  document.querySelectorAll('.cat-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+g).classList.add('active');
+}
+
+// ══ CATEGORIES ══
+const DEF_IMG={mujer:'https://images.unsplash.com/photo-1572804013427-4d7ca7268217?w=500&q=80',hombre:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80'};
+function addCategory(){
+  const name=document.getElementById('cat-name-inp').value.trim();const gender=document.getElementById('cat-gender-inp').value;
+  if(!name){showToast('⚠️ Escribe el nombre');return;}
+  const img=zoneData['newcat']||DEF_IMG[gender];const id='custom-'+Date.now();
+  const panel=document.getElementById('panel-'+gender);const card=document.createElement('div');card.className='cat-card';card.id='catcard-'+id;
+  card.innerHTML=`<img class="cat-img" src="${img}" alt="${name}"><div class="cat-overlay"><div class="cat-name">${name}</div><div class="cat-arrow" data-t="catSee">${t('catSee')}</div></div>`;
+  panel.appendChild(card);
+  const sel=document.getElementById('adm-cat');const opt=document.createElement('option');opt.value=gender;opt.textContent=`${gender==='mujer'?'Mujer':'Hombre'} — ${name}`;opt.dataset.customId=id;sel.appendChild(opt);
+  document.getElementById('cat-name-inp').value='';delete zoneData['newcat'];
+  document.getElementById('fz-newcat-thumb').style.display='none';document.getElementById('fz-newcat-txt').style.display='block';
+  renderCatList();showToast(`✅ "${name}" añadida`);
+}
+function removeCategory(id){const card=document.getElementById('catcard-'+id);if(card)card.remove();const opt=document.querySelector(`#adm-cat option[data-custom-id="${id}"]`);if(opt)opt.remove();renderCatList();showToast('Categoría eliminada');}
+const DEFAULT_CATS=[
+  {id:'vestidos',label:'Mujer — Vestidos',panel:'mujer',cardSel:'#panel-mujer .cat-card:nth-child(1)'},
+  {id:'monos',label:'Mujer — Monos',panel:'mujer',cardSel:'#panel-mujer .cat-card:nth-child(2)'},
+  {id:'trajes-m',label:'Mujer — Trajes',panel:'mujer',cardSel:'#panel-mujer .cat-card:nth-child(3)'},
+  {id:'pantalones',label:'Mujer — Pantalones',panel:'mujer',cardSel:'#panel-mujer .cat-card:nth-child(4)'},
+  {id:'trajes-h',label:'Hombre — Trajes',panel:'hombre',cardSel:'#panel-hombre .cat-card:nth-child(1)'},
+  {id:'camisas',label:'Hombre — Camisas',panel:'hombre',cardSel:'#panel-hombre .cat-card:nth-child(2)'},
+  {id:'chaquetas',label:'Hombre — Chaquetas',panel:'hombre',cardSel:'#panel-hombre .cat-card:nth-child(3)'},
+];
+const hiddenDefaults=new Set();
+function removeDefaultCat(id){const def=DEFAULT_CATS.find(d=>d.id===id);if(!def)return;const card=document.querySelector(def.cardSel);if(card)card.style.display='none';hiddenDefaults.add(id);[...document.getElementById('adm-cat').options].forEach(o=>{if(o.textContent===def.label)o.disabled=true;});renderCatList();showToast('Categoría ocultada');}
+function restoreDefaultCat(id){const def=DEFAULT_CATS.find(d=>d.id===id);if(!def)return;const card=document.querySelector(def.cardSel);if(card)card.style.display='';hiddenDefaults.delete(id);[...document.getElementById('adm-cat').options].forEach(o=>{if(o.textContent===def.label)o.disabled=false;});renderCatList();showToast('✅ Restaurada');}
+function renderCatList(){
+  const el=document.getElementById('adm-cat-list');
+  let html=`<div style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem">Predeterminadas</div>`;
+  DEFAULT_CATS.forEach(def=>{
+    const hidden=hiddenDefaults.has(def.id);const[gender,name]=def.label.split(' — ');
+    html+=`<div style="display:flex;align-items:center;gap:.8rem;padding:.65rem 0;border-bottom:1px solid var(--border)"><div style="width:44px;height:54px;border-radius:2px;background:var(--sand);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0">${gender==='Mujer'?'👗':'👔'}</div><div style="flex:1"><div style="font-size:.83rem;font-weight:500;${hidden?'text-decoration:line-through;opacity:.45':''}">${name}</div><div style="font-size:.72rem;color:var(--muted)">${gender}</div></div>${hidden?`<button onclick="restoreDefaultCat('${def.id}')" style="background:none;border:1px solid var(--sea);color:var(--sea);border-radius:2px;cursor:pointer;font-size:.68rem;padding:.25rem .65rem">↩ Restaurar</button>`:`<button onclick="removeDefaultCat('${def.id}')" style="background:none;border:1px solid var(--terra);color:var(--terra);border-radius:2px;cursor:pointer;font-size:.68rem;padding:.25rem .65rem">✕ Ocultar</button>`}</div>`;
+  });
+  const customCards=[...document.querySelectorAll('[id^="catcard-custom-"]')];
+  html+=`<div style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:1.4rem 0 .6rem">Personalizadas</div>`;
+  if(!customCards.length)html+=`<p style="font-size:.82rem;color:var(--muted)">Ninguna todavía.</p>`;
+  else customCards.forEach(card=>{
+    const id=card.id.replace('catcard-','');const name=card.querySelector('.cat-name').textContent;const img=card.querySelector('.cat-img').src;const gender=card.closest('#panel-mujer')?'Mujer':'Hombre';
+    html+=`<div style="display:flex;align-items:center;gap:.8rem;padding:.65rem 0;border-bottom:1px solid var(--border)"><img src="${img}" style="width:44px;height:54px;object-fit:cover;border-radius:2px" alt=""><div style="flex:1"><div style="font-size:.83rem;font-weight:500">${name}</div><div style="font-size:.72rem;color:var(--muted)">${gender}</div></div><button onclick="removeCategory('${id}')" style="background:none;border:1px solid var(--terra);color:var(--terra);border-radius:2px;cursor:pointer;font-size:.68rem;padding:.25rem .65rem">✕ Eliminar</button></div>`;
+  });
+  el.innerHTML=html;
+}
+
+// ══ CATEGORY MODAL ══
+// Mapa de categoría-id → palabras clave que pueden venir de la columna "categoria" de Sheets
+// Mapa catId → todas las variantes que puede escribir en la columna "categoria" de Sheets
+// Mujer: vestidos | monos | trajes | pantalones
+// Hombre: trajes (hombre) | camisas | calzado | corbatas
+const CAT_MAP = {
+  'vestidos':   ['vestido','vestidos','dress','dresses'],
+  'monos':      ['mono','monos','jumpsuit','enterizo','mono/jumpsuit'],
+  'trajes-m':   ['traje','trajes','traje mujer','trajes mujer','traje-m','trajes-m','suit','conjunto'],
+  'pantalones': ['pantalon','pantalones','pantalón','pant','pants','palazzo'],
+  'trajes-h':   ['traje hombre','trajes hombre','traje-h','trajes-h','americana','smoking','suit man','blazer'],
+  'camisas':    ['camisa','camisas','shirt','shirts','blusa','blusas'],
+  'calzado':    ['calzado','zapato','zapatos','shoe','shoes','bota','botas'],
+  'corbatas':   ['corbata','corbatas','tie','ties','pañuelo'],
+};
+
+function matchesCat(product, catId) {
+  const c = (product.cat || '').toLowerCase().trim();
+  if (!c) return false;
+  // Coincidencia exacta con el id
+  if (c === catId) return true;
+  // Coincidencia con cualquier variante del mapa
+  return (CAT_MAP[catId] || []).some(k => c === k || c.includes(k));
+}
+
+function openCategory(catId, catLabel) {
+  const prods = PRODUCTS.filter(p => matchesCat(p, catId));
+  window._catProds = prods; // store for filter reuse
+
+  const title = document.getElementById('cat-modal-title');
+  const modal = document.getElementById('cat-modal');
+
+  title.textContent = catLabel;
+
+  // Build talla options
+  const tallaSel = document.getElementById('cat-filter-talla');
+  const colorSel = document.getElementById('cat-filter-color');
+  const allTallas = [...new Set(prods.flatMap(p => p.tallas||[]).filter(Boolean))].sort();
+  const allColors = [...new Set(prods.map(p => p.color||'').filter(Boolean))].sort();
+
+  tallaSel.innerHTML = '<option value="">Todas las tallas</option>' +
+    allTallas.map(t => `<option value="${t}">${t}</option>`).join('');
+  colorSel.innerHTML = '<option value="">Todos los colores</option>' +
+    allColors.map(c => `<option value="${c}">${c}</option>`).join('');
+
+  // Hide filters if no options
+  document.getElementById('cat-filters').style.display =
+    (allTallas.length || allColors.length) ? 'flex' : 'none';
+
+  document.getElementById('cat-filter-reset').style.display = 'none';
+  document.getElementById('cat-filter-count').textContent = '';
+
+  renderCatGrid(prods);
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function applyCatFilters() {
+  const talla = document.getElementById('cat-filter-talla').value;
+  const color = document.getElementById('cat-filter-color').value;
+  const reset = document.getElementById('cat-filter-reset');
+  const count = document.getElementById('cat-filter-count');
+
+  let filtered = window._catProds || [];
+  if (talla) filtered = filtered.filter(p => (p.tallas||[]).includes(talla));
+  if (color) filtered = filtered.filter(p => (p.color||'').toLowerCase() === color.toLowerCase());
+
+  reset.style.display = (talla || color) ? 'inline-block' : 'none';
+  count.textContent = filtered.length + ' producto' + (filtered.length !== 1 ? 's' : '');
+
+  renderCatGrid(filtered);
+}
+
+function resetCatFilters() {
+  document.getElementById('cat-filter-talla').value = '';
+  document.getElementById('cat-filter-color').value = '';
+  document.getElementById('cat-filter-reset').style.display = 'none';
+  document.getElementById('cat-filter-count').textContent = '';
+  renderCatGrid(window._catProds || []);
+}
+
+function renderCatGrid(prods) {
+  const grid = document.getElementById('cat-modal-grid');
+  if (!prods.length) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-family:'Playfair Display',serif;font-style:italic">No hay productos con estos filtros.</div>`;
+    return;
+  }
+  grid.innerHTML = prods.map(p => `
+    <div class="prod-card" onclick="closeCatModal();setTimeout(()=>openProdModal('${p.id}'),150)" style="cursor:pointer">
+      <div class="prod-img-wrap">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        ${p.tag ? `<div class="prod-tag">${p.tag}</div>` : ''}
+        <button class="prod-quick" onclick="event.stopPropagation();addToCart('${p.id}');closeCatModal()">${t('addToCart')}</button>
+      </div>
+      <div class="prod-info">
+        <div class="prod-brand">${p.brand || ''}</div>
+        <div class="prod-name">${p.name}</div>
+        ${p.color ? `<div style="font-size:.72rem;color:var(--muted);margin-top:.2rem">${p.color}</div>` : ''}
+        ${p.desc ? `<div class="prod-desc">${p.desc}</div>` : ''}
+        <div class="prod-price">\u20ac${p.price}</div>
+      </div>
+    </div>`).join('');
+}
+
+function closeCatModal() {
+  document.getElementById('cat-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ══ LEGAL ══
+const LEGAL_CONTENT={
+  aviso:{title:'Aviso Legal',body:`
+    <p><strong>Titular:</strong> Pepita Planells · Ibimoda Ibiza</p>
+    <p><strong>Domicilio:</strong> Carrer Barcelona, 13G, Sant Antoni de Portmany, 07820 Ibiza, Islas Baleares</p>
+    <p><strong>Teléfono:</strong> <a href="tel:+34971341972" style="color:var(--terra)">+34 971 34 19 72</a></p>
+    <p><strong>WhatsApp:</strong> <a href="https://wa.me/34655024049" target="_blank" style="color:var(--terra)">+34 655 024 049</a></p>
+    <p><strong>Email:</strong> <a href="mailto:ibimodasanantonio@gmail.com" style="color:var(--terra)">ibimodasanantonio@gmail.com</a></p>
+    <p><strong>Actividad:</strong> Comercio al por menor de prendas de vestir y complementos de moda.</p>
+    <p>El acceso y uso de este sitio web implica la aceptación de las presentes condiciones legales. Ibimoda Ibiza se reserva el derecho a modificar los contenidos sin previo aviso.</p>
+  `},
+  privacidad:{title:'Política de Privacidad',body:`
+    <p>En cumplimiento del <strong>Reglamento (UE) 2016/679 (RGPD)</strong> y la <strong>Ley Orgánica 3/2018 (LOPDGDD)</strong>, le informamos:</p>
+    <br>
+    <p><strong>Responsable del tratamiento:</strong><br>
+    Pepita Planells · Ibimoda Ibiza<br>
+    Carrer Barcelona, 13G · Sant Antoni de Portmany, 07820 Ibiza<br>
+    Email: <a href="mailto:ibimodasanantonio@gmail.com" style="color:var(--terra)">ibimodasanantonio@gmail.com</a><br>
+    Teléfono: <a href="tel:+34971341972" style="color:var(--terra)">+34 971 34 19 72</a></p>
+    <br>
+    <p><strong>Finalidad:</strong> Gestión de pedidos, envío de productos, atención al cliente y comunicaciones relacionadas con su compra.</p>
+    <p><strong>Legitimación:</strong> Ejecución de contrato de compraventa y consentimiento del interesado.</p>
+    <p><strong>Destinatarios:</strong> No se cederán datos a terceros salvo obligación legal o empresas de transporte necesarias para la entrega del pedido.</p>
+    <p><strong>Derechos:</strong> Puede ejercer sus derechos de acceso, rectificación, supresión, portabilidad y oposición escribiendo a <a href="mailto:ibimodasanantonio@gmail.com" style="color:var(--terra)">ibimodasanantonio@gmail.com</a> o por WhatsApp al <a href="https://wa.me/34655024049" target="_blank" style="color:var(--terra)">+34 655 024 049</a>.</p>
+    <p><strong>Conservación:</strong> Los datos se conservarán durante el tiempo necesario para cumplir con la finalidad y las obligaciones legales aplicables.</p>
+  `},
+  cookies:{title:'Política de Cookies',body:`<p>Este sitio utiliza únicamente cookies técnicas estrictamente necesarias para su correcto funcionamiento (sesión, carrito de compra). No utilizamos cookies de seguimiento ni publicitarias. Puede configurar o deshabilitar las cookies desde la configuración de su navegador.</p>`},
+  envios:{title:'Política de Envíos',desde:3,hasta:6,customBody:null,get body(){return this.customBody||`
+    <h3 style="font-family:'Playfair Display',serif;font-weight:400;font-size:1.1rem;margin-bottom:.8rem">📦 Envíos</h3>
+    <p>Realizamos envíos a toda la Península Ibérica a través de <strong>Correos Express</strong>.</p>
+    <br>
+    <p><strong>Plazo de entrega:</strong> ${this.desde}–${this.hasta} días laborables desde la confirmación del pedido.</p>
+    <br>
+    <p><strong>Gastos de envío:</strong></p>
+    <ul style="margin:.5rem 0 .5rem 1.2rem;line-height:2">
+      <li>Pedidos <strong>inferiores a 100€</strong>: <strong>4,95€</strong></li>
+      <li>Pedidos de <strong>100€ o más</strong>: <strong>envío gratuito</strong></li>
+      <li>Recogida en tienda: <strong>gratuita</strong></li>
+    </ul>
+    <br>
+    <p><strong>Seguimiento:</strong> Una vez realizado el envío recibirás un email con el número de seguimiento de Correos.</p>
+    <br>
+  `;}},
+  devoluciones:{title:'Devoluciones y Cambios',body:`
+    <h3 style="font-family:'Playfair Display',serif;font-weight:400;font-size:1.1rem;margin-bottom:.8rem">↩ Derecho de desistimiento</h3>
+    <p>Dispones de <strong>30 días naturales</strong> desde la recepción del pedido para solicitar una devolución o cambio, sin necesidad de justificación.</p>
+    <br>
+    <p><strong>Condiciones:</strong></p>
+    <ul style="margin:.5rem 0 .5rem 1.2rem;line-height:2">
+      <li>La prenda debe estar en perfecto estado, sin usar y con todas las etiquetas originales.</li>
+      <li>Los artículos en oferta o rebaja no admiten devolución salvo defecto de fabricación.</li>
+    </ul>
+    <br>
+    <p><strong>Cómo solicitar una devolución o cambio:</strong></p>
+    <ul style="margin:.5rem 0 .5rem 1.2rem;line-height:2">
+      <li>WhatsApp: <a href="https://wa.me/34655024049" target="_blank" style="color:var(--terra)">+34 655 024 049</a></li>
+      <li>Email: <a href="mailto:ibimodasanantonio@gmail.com" style="color:var(--terra)">ibimodasanantonio@gmail.com</a></li>
+      <li>Teléfono: <a href="tel:+34971341972" style="color:var(--terra)">+34 971 34 19 72</a></li>
+    </ul>
+    <br>
+    <p>Una vez recibida y verificada la prenda, el reembolso se realizará en un plazo máximo de <strong>7 días laborables</strong> por el mismo medio de pago utilizado en la compra.</p>
+  `}
+};
+function openLegal(key){const c=LEGAL_CONTENT[key];if(!c)return;document.getElementById('legal-title').textContent=c.title;document.getElementById('legal-body').innerHTML=c.body;document.getElementById('legal-modal').classList.add('open');}
+function closeLegal(){document.getElementById('legal-modal').classList.remove('open');}
+
+// ══ COOKIES ══
+const SEARCH_INDEX_ES=[
+  {terms:['vestido','vestidos','boda','fiesta','floral'],label:'Vestidos',gender:'mujer',idx:0},
+  {terms:['mono','monos','jumpsuit','enterizo'],label:'Monos',gender:'mujer',idx:1},
+  {terms:['traje','trajes'],label:'Trajes — Mujer',gender:'mujer',idx:2},
+  {terms:['pantalón','pantalones','palazzo'],label:'Pantalones',gender:'mujer',idx:3},
+  {terms:['traje hombre','americana','smoking'],label:'Trajes — Hombre',gender:'hombre',idx:0},
+  {terms:['camisa','camisas'],label:'Camisas',gender:'hombre',idx:1},
+  {terms:['chaqueta','chaquetas','blazer'],label:'Chaquetas',gender:'hombre',idx:2},
+];
+const SEARCH_INDEX_EN=[
+  {terms:['dress','dresses','wedding','party','gown'],label:'Dresses',gender:'mujer',idx:0},
+  {terms:['jumpsuit','romper','playsuit'],label:'Jumpsuits',gender:'mujer',idx:1},
+  {terms:['suit','suits','women suit'],label:'Suits — Women',gender:'mujer',idx:2},
+  {terms:['trousers','pants','palazzo'],label:'Trousers',gender:'mujer',idx:3},
+  {terms:['men suit','tuxedo','blazer men'],label:'Suits — Men',gender:'hombre',idx:0},
+  {terms:['shirt','shirts'],label:'Shirts',gender:'hombre',idx:1},
+  {terms:['jacket','jackets','blazer'],label:'Jackets',gender:'hombre',idx:2},
+];
+function getSearchIndex(){return currentLang==='en'?SEARCH_INDEX_EN:SEARCH_INDEX_ES;}
+
+function buildSearchItems(q){
+  const ql=q.toLowerCase().trim();if(!ql)return[];const results=[];
+  getSearchIndex().forEach(cat=>{if(cat.terms.some(term=>term.includes(ql)||ql.includes(term.split(' ')[0])))results.push({type:'cat',label:cat.label,gender:cat.gender,idx:cat.idx});});
+  document.querySelectorAll('[id^="catcard-custom-"]').forEach(card=>{
+    const name=card.querySelector('.cat-name').textContent.toLowerCase();
+    if(name.includes(ql)){const gender=card.closest('#panel-mujer')?'mujer':'hombre';results.push({type:'cat-custom',label:card.querySelector('.cat-name').textContent,gender,cardId:card.id});}
+  });
+  PRODUCTS.forEach(p=>{
+  const words = ql.split(/\s+/).filter(Boolean);
+  const fields = [p.name,p.brand||'',p.desc||'',p.color||'',p.cat||'',(p.tallas||[]).join(' ')].map(f=>f.toLowerCase());
+  const matches = words.every(w => fields.some(f => f.includes(w)));
+  if(matches) results.push({type:'product',label:p.name,sub:p.brand+((p.color)?' · '+p.color:''),price:p.price,id:p.id});});
+  return results;
+}
+function doSearch(q){
+  const box = document.getElementById('search-results');
+  if(!q.trim()){
+    box.innerHTML=`<div style="padding:2rem;text-align:center;color:var(--muted);font-size:.85rem;font-family:'Playfair Display',serif;font-style:italic">${t('searchHint')}</div>`;
+    return;
+  }
+
+  const ql    = q.toLowerCase().trim();
+  const words = ql.split(/\s+/).filter(Boolean);
+
+  // Build category results
+  const catResults = [];
+  getSearchIndex().forEach(cat => {
+    if(cat.terms.some(term => term.includes(ql) || ql.includes(term.split(' ')[0])))
+      catResults.push({type:'cat', label:cat.label, gender:cat.gender, idx:cat.idx});
+  });
+
+  // Build product results grouped by category+color+talla
+  // Instead of listing all products, show unique category+filter combos
+  const filterGroups = {};
+  PRODUCTS.forEach(p => {
+    const fields = [p.name, p.brand||'', p.desc||'', p.color||'', p.cat||'', (p.tallas||[]).join(' ')].map(f=>f.toLowerCase());
+    const matches = words.every(w => fields.some(f => f.includes(w)));
+    if(!matches) return;
+
+    // Find category
+    const catMap = {
+      'vestidos':'Vestidos','monos':'Monos','trajes-m':'Trajes Mujer',
+      'pantalones':'Pantalones','trajes-h':'Trajes Hombre',
+      'camisas':'Camisas','calzado':'Calzado','corbatas':'Corbatas'
+    };
+    let catId = null, catLabel = null;
+    for(const [id, label] of Object.entries(catMap)){
+      if(matchesCat(p, id)){ catId=id; catLabel=label; break; }
+    }
+    if(!catId) return;
+
+    // Group key: category + color (if searched) + talla (if searched)
+    const colorMatch = words.find(w => (p.color||'').toLowerCase().includes(w));
+    const tallaMatch = words.find(w => (p.tallas||[]).some(t=>t.toLowerCase().includes(w)));
+    const filterColor = colorMatch ? (p.color||'') : '';
+    const filterTalla = tallaMatch ? (p.tallas||[]).find(t=>t.toLowerCase().includes(tallaMatch))||'' : '';
+    const key = catId + '|' + filterColor + '|' + filterTalla;
+
+    if(!filterGroups[key]){
+      filterGroups[key] = {catId, catLabel, color:filterColor, talla:filterTalla, count:0};
+    }
+    filterGroups[key].count++;
+  });
+
+  const groups = Object.values(filterGroups);
+
+  if(!catResults.length && !groups.length){
+    box.innerHTML=`<div style="padding:2rem;text-align:center;color:var(--muted);font-size:.85rem">${t('searchEmpty')} "<strong>${q}</strong>"</div>`;
+    return;
+  }
+
+  let html = '';
+
+  // Category matches
+  if(catResults.length){
+    html += `<div style="padding:.5rem 1.2rem .3rem;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra)">${t('searchCats')}</div>`;
+    catResults.forEach(r => {
+      html += `<div class="s-row" onclick="goToCategory(${JSON.stringify(r).replace(/"/g,'&quot;')})"
+        style="display:flex;align-items:center;gap:.8rem;padding:.75rem 1.2rem;cursor:pointer;transition:background .15s"
+        onmouseover="this.style.background='var(--sand)'" onmouseout="this.style.background=''">
+        <div>
+          <div style="font-size:.88rem;font-weight:500">${r.label}</div>
+          <div style="font-size:.72rem;color:var(--muted)">${r.gender==='mujer'?(currentLang==='en'?'Women':'Mujer'):(currentLang==='en'?'Men':'Hombre')}</div>
+        </div>
+        <span style="margin-left:auto;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--terra)">${t('catSee')}</span>
+      </div>`;
+    });
+  }
+
+  // Product filter groups
+  if(groups.length){
+    html += `<div style="padding:.5rem 1.2rem .3rem;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);${catResults.length?'border-top:1px solid var(--border);margin-top:.3rem':''}">${t('searchProds')}</div>`;
+    groups.forEach(g => {
+      const subtitle = [g.color, g.talla].filter(Boolean).join(' · ') || '';
+      const countTxt = g.count > 1 ? ` (${g.count})` : '';
+      html += `<div class="s-row"
+        onclick="goToProductGroup('${g.catId}','${g.catLabel}','${g.color}','${g.talla}')"
+        style="display:flex;align-items:center;gap:.8rem;padding:.75rem 1.2rem;cursor:pointer;transition:background .15s"
+        onmouseover="this.style.background='var(--sand)'" onmouseout="this.style.background=''">
+        <div>
+          <div style="font-size:.88rem;font-weight:500">${g.catLabel}${countTxt}</div>
+          ${subtitle?`<div style="font-size:.72rem;color:var(--muted)">${subtitle}</div>`:''}
+        </div>
+        <span style="margin-left:auto;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--terra)">${t('catSee')}</span>
+      </div>`;
+    });
+  }
+
+  box.innerHTML = html;
+}
+
+function goToProductGroup(catId, catLabel, color, talla){
+  closeSearch();
+  openCategory(catId, catLabel);
+  setTimeout(() => {
+    if(color){
+      const colorSel = document.getElementById('cat-filter-color');
+      if(colorSel){ colorSel.value = color; }
+    }
+    if(talla){
+      const tallaSel = document.getElementById('cat-filter-talla');
+      if(tallaSel){ tallaSel.value = talla; }
+    }
+    if(color || talla) applyCatFilters();
+  }, 150);
+}
+
+function goToCategory(r){
+  closeSearch();
+  const btn=document.querySelector(`.gender-tab[onclick*="'${r.gender}'"]`);if(btn)switchGender(r.gender,btn);
+  document.getElementById('tienda').scrollIntoView({behavior:'smooth'});
+  if(r.type==='cat'){const panel=document.getElementById('panel-'+r.gender);const card=panel?panel.querySelectorAll('.cat-card')[r.idx]:null;if(card){card.style.outline='3px solid var(--terra)';setTimeout(()=>card.style.outline='',2000);}}
+  else if(r.type==='cat-custom'){const card=document.getElementById(r.cardId);if(card){card.style.outline='3px solid var(--terra)';setTimeout(()=>card.style.outline='',2000);}}
+}
+function goToProduct(id){
+  closeSearch();
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p) return;
+  // Find which category this product belongs to
+  const catMap = {
+    'vestidos':   'Vestidos',
+    'monos':      'Monos',
+    'trajes-m':   'Trajes',
+    'pantalones': 'Pantalones',
+    'trajes-h':   'Trajes Hombre',
+    'camisas':    'Camisas',
+    'calzado':    'Calzado',
+    'corbatas':   'Corbatas',
+  };
+  // Find catId by matching product cat
+  let matchedCatId = null;
+  let matchedLabel = null;
+  for (const [catId, label] of Object.entries(catMap)) {
+    if (matchesCat(p, catId)) { matchedCatId = catId; matchedLabel = label; break; }
+  }
+  if (matchedCatId) {
+    // Open category modal, then apply filters matching this product
+    openCategory(matchedCatId, matchedLabel);
+    setTimeout(() => {
+      // Apply color filter if product has color
+      if (p.color) {
+        const colorSel = document.getElementById('cat-filter-color');
+        if (colorSel) {
+          colorSel.value = p.color;
+          applyCatFilters();
+        }
+      }
+    }, 100);
+  } else {
+    // Fallback: open product modal directly
+    setTimeout(() => openProdModal(id), 150);
+  }
+}
+function searchKey(e){if(e.key==='Escape')closeSearch();if(e.key==='Enter'){const rows=document.querySelectorAll('.s-row');if(rows[0])rows[0].click();}}
+function openSearch(){
+  document.getElementById('search-modal').classList.add('open');
+  document.getElementById('search-results').innerHTML=`<div style="padding:2rem;text-align:center;color:var(--muted);font-size:.85rem;font-family:'Playfair Display',serif;font-style:italic">${t('searchHint')}</div>`;
+  document.getElementById('search-inp').value='';
+  document.getElementById('search-inp').placeholder=t('searchPlaceholder');
+  setTimeout(()=>document.getElementById('search-inp').focus(),100);
+}
+function closeSearch(){document.getElementById('search-modal').classList.remove('open');}
+
+// ══ DESISTIMIENTO ══
+let desistWa    = '34655024049';
+let desistEmail = 'ibimodasanantonio@gmail.com';
+
+function openDesist(){
+  document.getElementById('desist-form-wrap').style.display='block';
+  document.getElementById('desist-ok').style.display='none';
+  ['desist-order','desist-name','desist-email','desist-reason'].forEach(id=>document.getElementById(id).value='');
+  // Traducir
+  const l = currentLang;
+  document.getElementById('desist-title').textContent    = l==='en' ? 'Exercise right of withdrawal'     : 'Ejercer derecho de desistimiento';
+  document.getElementById('desist-intro').innerHTML      = l==='en'
+    ? 'Under consumer protection law, you have the right to withdraw from your purchase within <strong>14 calendar days</strong> of receiving your order, without justification.'
+    : 'Conforme al artículo 102 del Real Decreto Legislativo 1/2007, tienes derecho a desistir de tu compra en un plazo de <strong>14 días naturales</strong> desde la recepción del pedido, sin necesidad de justificación.';
+  document.getElementById('desist-lbl-order').textContent  = l==='en' ? 'Order number *'   : 'Número de pedido *';
+  document.getElementById('desist-lbl-name').textContent   = l==='en' ? 'Full name *'       : 'Nombre completo *';
+  document.getElementById('desist-lbl-email').textContent  = l==='en' ? 'Email *'           : 'Email *';
+  document.getElementById('desist-lbl-reason').textContent = l==='en' ? 'Reason (optional)' : 'Motivo (opcional)';
+  document.getElementById('desist-send-btn').textContent   = l==='en' ? '📨 Send request'   : '📨 Enviar solicitud';
+  document.getElementById('desist-also').textContent       = l==='en' ? 'You can also contact us via:' : 'También puedes solicitarlo por:';
+  document.getElementById('desist-modal').classList.add('open');
+}
+function closeDesist(){ document.getElementById('desist-modal').classList.remove('open'); }
+
+function sendDesist(){
+  const order  = document.getElementById('desist-order').value.trim();
+  const name   = document.getElementById('desist-name').value.trim();
+  const email  = document.getElementById('desist-email').value.trim();
+  const reason = document.getElementById('desist-reason').value.trim();
+  if(!order||!name||!email){ showToast('⚠️ Rellena los campos obligatorios'); return; }
+
+  const btn = document.getElementById('desist-send-btn');
+  btn.innerHTML='⏳ Procesando...'; btn.disabled=true;
+
+  // Intentar abrir mailto
+  const subject = encodeURIComponent(`↩ Solicitud de desistimiento — Pedido ${order}`);
+  const bodyText =
+`SOLICITUD DE DERECHO DE DESISTIMIENTO
+======================================
+Número de pedido: ${order}
+Nombre: ${name}
+Email cliente: ${email}
+Motivo: ${reason || 'No indicado'}
+Fecha solicitud: ${new Date().toLocaleString('es-ES')}
+======================================`;
+
+  const mailtoLink = `mailto:${desistEmail}?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
+  const a = document.createElement('a');
+  a.href = mailtoLink; a.target = '_blank'; a.click();
+
+  // Mostrar confirmación con datos para copiar
+  setTimeout(()=>{
+    document.getElementById('desist-form-wrap').style.display='none';
+    document.getElementById('desist-ok').style.display='block';
+    const l = currentLang;
+    document.getElementById('desist-ok-title').textContent = l==='en' ? 'Request ready to send' : 'Solicitud lista para enviar';
+    document.getElementById('desist-ok-msg').innerHTML = `
+      <p style="margin-bottom:1rem">${l==='en'
+        ? 'Your email client should have opened. If not, send an email to:'
+        : 'Tu gestor de correo debería haberse abierto. Si no, envía un email a:'}</p>
+      <div style="background:var(--sand);border:1px solid var(--border);border-radius:3px;padding:1rem;text-align:left;font-size:.82rem;line-height:1.8">
+        <div>📧 <strong>${desistEmail}</strong></div>
+        <div style="margin-top:.5rem;font-size:.75rem;color:var(--muted);white-space:pre-line">${bodyText}</div>
+      </div>
+      <button onclick="navigator.clipboard.writeText('${bodyText.replace(/'/g,"\\'")}').then(()=>showToast('✅ Copiado'))"
+        style="margin-top:.8rem;background:none;border:1px solid var(--border);padding:.5rem 1.2rem;font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border-radius:2px;color:var(--ink)">
+        📋 Copiar texto
+      </button>`;
+    btn.innerHTML='📨 Enviar solicitud'; btn.disabled=false;
+  }, 500);
+}
+
+function showDesistOk(name){
+  const l = currentLang;
+  document.getElementById('desist-form-wrap').style.display='none';
+  document.getElementById('desist-ok').style.display='block';
+  document.getElementById('desist-ok-title').textContent = l==='en' ? 'Request sent' : 'Solicitud enviada';
+  document.getElementById('desist-ok-msg').innerHTML = l==='en'
+    ? `We have received your withdrawal request, <strong>${name}</strong>. We will contact you within <strong>2 working days</strong>.`
+    : `Hemos recibido tu solicitud de desistimiento, <strong>${name}</strong>. Nos pondremos en contacto contigo en un plazo máximo de <strong>2 días hábiles</strong>.`;
+}
+
+function applyDesistContact(){
+  const wa      = document.getElementById('desist-wa-inp').value.trim().replace(/\D/g,'');
+  const waDisp  = document.getElementById('desist-wa-display-inp').value.trim();
+  const email   = document.getElementById('desist-email-inp').value.trim();
+  if(!wa||!email){ showToast('⚠️ Completa los campos'); return; }
+  desistWa    = wa;
+  desistEmail = email;
+  const waUrl = `https://wa.me/${wa}?text=Quiero%20ejercer%20mi%20derecho%20de%20desistimiento`;
+  document.getElementById('desist-wa-link').href       = waUrl;
+  document.getElementById('desist-wa-text').textContent= waDisp||wa;
+  document.getElementById('desist-email-link').href    = 'mailto:'+email;
+  document.getElementById('desist-email-text').textContent = email;
+  showToast('✅ Contacto de desistimiento actualizado');
+}
+
+
+const ORDERS = []; // {orderId, name, email, items, total, days, date, tracking, sent}
+
+function saveOrder(orderId, name, email, itemsList, total, days){
+  const order = {orderId, name, email, itemsList, total, days, date: new Date().toLocaleString('es-ES'), tracking:'', sent:false};
+  ORDERS.unshift(order);
+  if(window.fbSaveOrder) window.fbSaveOrder(order).catch(()=>{});
+  renderOrders();
+}
+
+function renderOrders(){
+  const el = document.getElementById('adm-orders-list');
+  if(!ORDERS.length){
+    el.innerHTML='<div style="text-align:center;padding:3rem;color:var(--muted);font-family:\'Playfair Display\',serif;font-style:italic">Aún no hay pedidos recibidos</div>';
+    return;
+  }
+  el.innerHTML = ORDERS.map((o,i) => `
+    <div style="background:var(--sand);border:1px solid var(--border);border-radius:3px;padding:1.2rem;margin-bottom:1rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;flex-wrap:wrap;gap:.5rem">
+        <div>
+          <span style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:500">${o.orderId}</span>
+          <span style="font-size:.7rem;color:var(--muted);margin-left:.8rem">${o.date}</span>
+        </div>
+        <span style="background:${o.sent?'#25d366':'var(--terra)'};color:#fff;font-size:.65rem;padding:.25rem .7rem;border-radius:20px;letter-spacing:.1em;text-transform:uppercase">
+          ${o.sent ? '✓ Tracking enviado' : '⏳ Pendiente tracking'}
+        </span>
+      </div>
+      <div style="font-size:.82rem;margin-bottom:.3rem">👤 <strong>${o.name}</strong> — <a href="mailto:${o.email}" style="color:var(--terra)">${o.email}</a></div>
+      <div style="font-size:.78rem;color:var(--muted);white-space:pre-line;margin-bottom:.3rem">${o.itemsList}</div>
+      <div style="font-size:.85rem;font-weight:600;color:var(--sea);margin-bottom:.8rem">Total: ${o.total} · ${o.days}</div>
+      ${o.sent
+        ? `<div style="font-size:.78rem;color:#25d366">✅ Tracking enviado: <strong>${o.tracking}</strong></div>`
+        : `<div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap">
+            <input id="trk-${i}" type="text" placeholder="Ej: EA123456789ES" value="${o.tracking}"
+              style="flex:1;min-width:180px;padding:.65rem 1rem;border:1px solid var(--border);font-family:'Jost',sans-serif;font-size:.85rem;border-radius:2px;outline:none">
+            <button onclick="sendTracking(${i})"
+              style="background:var(--terra);color:#fff;border:none;padding:.65rem 1.4rem;font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border-radius:2px;white-space:nowrap">
+              📦 Enviar tracking
+            </button>
+          </div>`
+      }
+    </div>`).join('');
+}
+
+function sendTracking(i){
+  const order = ORDERS[i];
+  const trackingNum = document.getElementById('trk-'+i).value.trim();
+  if(!trackingNum){ showToast('⚠️ Introduce el número de seguimiento'); return; }
+
+  const btn = document.querySelector(`#adm-orders-list button[onclick="sendTracking(${i})"]`);
+  if(btn){ btn.innerHTML='⏳ Enviando...'; btn.disabled=true; }
+
+  const trackingUrl = `https://www.correos.es/es/es/herramientas/localizador/envios/detalle?tracking-number=${trackingNum}`;
+
+  emailjs.send('service_03oh7df','template_36bow8e',{
+    to_name:        order.name,
+    to_email:       order.email,
+    order_id:       order.orderId,
+    tracking_number: trackingNum,
+    tracking_url:   trackingUrl,
+    delivery_days:  order.days,
+  })
+  .then(()=>{
+    ORDERS[i].tracking = trackingNum;
+    ORDERS[i].sent = true;
+    if(window.fbUpdateOrder) window.fbUpdateOrder(order.orderId, {tracking: trackingNum, sent: true}).catch(()=>{});
+    renderOrders();
+    showToast(`✅ Tracking enviado a ${order.email}`);
+  })
+  .catch(err=>{
+    console.error('EmailJS tracking error:',err);
+    if(btn){ btn.innerHTML='📦 Enviar tracking'; btn.disabled=false; }
+    showToast('⚠️ Error al enviar el tracking, inténtalo de nuevo');
+  });
+}
+
+
+function showToast(msg, type='default'){
+  const toast = document.getElementById('toast');
+  if(type === 'cart'){
+    toast.innerHTML = `
+      <span style='font-size:1rem;margin-right:.6rem'>🛍️</span>
+      <div style='font-size:.82rem'>${msg}</div>`;
+  } else {
+    toast.innerHTML = `<span>${msg}</span>`;
+  }
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'), 3200);
+}
+
+// ══════════════════════════════════════════════
+// GOOGLE SHEETS — CARGA AUTOMÁTICA DE PRODUCTOS
+// ══════════════════════════════════════════════
+// ID de tu hoja de Google Sheets (extraído de la URL)
+const SHEET_ID = '1vwzRap6X5Cv-ISY64IItUrm8Vi35SeoqaO-MJMQPw30';
+
+// Nombre de la hoja (pestaña). Si tu hoja se llama distinto, cámbialo aquí.
+const SHEET_NAME = 'PRODUCTOS';
+
+// Intervalo de refresco automático en ms (5 minutos)
+const SHEETS_REFRESH_MS = 5 * 60 * 1000;
+
+// Variable para saber si los productos vienen de Sheets (no se mezclan con admin manual)
+let sheetsLoaded = false;
+let sheetsRefreshTimer = null;
+
+/**
+ * Construye la URL de la API pública de Google Sheets (CSV export).
+ * No requiere API key — la hoja debe ser pública ("Cualquiera con el enlace puede ver").
+ */
+function buildSheetsUrl() {
+  return `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}&cachebust=${Date.now()}`;
+}
+
+/**
+ * Parsea una fila CSV respetando campos entre comillas que pueden contener comas.
+ */
+function parseCSVLine(line) {
+  const result = [];
+  let cur = '', inQ = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (ch === '"') {
+      if (inQ && line[i+1] === '"') { cur += '"'; i++; }
+      else { inQ = !inQ; }
+    } else if (ch === ',' && !inQ) {
+      result.push(cur.trim()); cur = '';
+    } else {
+      cur += ch;
+    }
+  }
+  result.push(cur.trim());
+  return result;
+}
+
+// Normaliza un texto: minúsculas, sin tildes, sin espacios extra
+function normKey(s) {
+  return String(s).toLowerCase()
+    .replace(/[áàä]/g,'a').replace(/[éèë]/g,'e').replace(/[íìï]/g,'i')
+    .replace(/[óòö]/g,'o').replace(/[úùü]/g,'u').replace(/ñ/g,'n')
+    .replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'');
+}
+
+function parseCSV(text) {
+  const lines = text.split('\n').map(l => l.replace(/\r/g, '')).filter(l => l.trim());
+  if (lines.length < 2) return [];
+
+  const rawHeaders = parseCSVLine(lines[0]);
+  const headers = rawHeaders.map(normKey);
+  console.log('[Sheets] Cabeceras originales:', rawHeaders);
+  console.log('[Sheets] Cabeceras normalizadas:', headers);
+
+  const rows = [];
+  for (let i = 1; i < lines.length; i++) {
+    const values = parseCSVLine(lines[i]);
+    if (values.every(v => !v)) continue;
+    const obj = {};
+    headers.forEach((h, idx) => { obj[h] = (values[idx] || '').trim(); });
+    rows.push(obj);
+  }
+  return rows;
+}
+
+function rowToProduct(row, idx) {
+  const get = (...keys) => {
+    for (const k of keys) {
+      const nk = normKey(k);
+      if (row[nk] !== undefined && row[nk] !== '') return row[nk];
+    }
+    return '';
+  };
+  const isTruthy = v => /^(s[ii]|si|yes|true|1)/i.test(String(v).trim());
+  const isActive  = v => v === '' || isTruthy(v);
+
+  const name  = get('nombre','name','producto');
+  const priceRaw = get('precio','price');
+  const price = parseFloat(priceRaw.replace(',','.'));
+
+  if (!name || isNaN(price)) {
+    console.log('[Sheets] Fila descartada (sin nombre o precio):', row);
+    return null;
+  }
+  if (!isActive(get('activo','active','visible'))) {
+    console.log('[Sheets] Fila inactiva:', name);
+    return null;
+  }
+
+  const prod = {
+    id:       'sheet_' + idx + '_' + Date.now(),
+    name,
+    price,
+    brand:    get('marca','brand','designer'),
+    cat:      get('categoria','category','cat','genero','gender') || 'vestidos',
+    desc:     get('descripcion','description','desc'),
+    tag:      get('etiqueta','tag','badge'),
+    featured: isTruthy(get('destacado','featured')),
+    img:      get('imagen','image','img','foto') ||
+              'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&q=80',
+    imgs: [
+      get('imagen','image','img','foto') || 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&q=80',
+      get('imagen2','imagen_2','image2','img2','foto2'),
+      get('imagen3','imagen_3','image3','img3','foto3'),
+      get('imagen4','imagen_4','image4','img4','foto4'),
+    ].filter(Boolean),
+    tallas:   get('tallas','talla','sizes','size').split(',').map(t=>t.trim()).filter(Boolean),
+    color:    get('color','colour','colores','colors'),
+    fromSheets: true,
+  };
+  console.log('[Sheets] Producto creado:', prod.name, '| cat:', prod.cat, '| featured:', prod.featured);
+  return prod;
+}
+
+/**
+ * Muestra un indicador visual de carga en la grid de productos.
+ */
+function showSheetsLoading() {
+  const grid = document.getElementById('products-grid');
+  if (!grid) return;
+  grid.innerHTML = `
+    <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted)">
+      <div style="font-size:1.5rem;margin-bottom:.8rem;animation:spin 1s linear infinite;display:inline-block">⟳</div>
+      <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:.95rem">
+        Cargando productos…
+      </div>
+    </div>`;
+  // Añadir keyframe spin si no existe
+  if (!document.getElementById('spin-style')) {
+    const s = document.createElement('style');
+    s.id = 'spin-style';
+    s.textContent = '@keyframes spin{to{transform:rotate(360deg)}}';
+    document.head.appendChild(s);
+  }
+}
+
+/**
+ * Carga los productos desde Google Sheets y actualiza la tienda.
+ * Si falla (CORS, red, hoja privada), muestra un aviso y mantiene
+ * los productos que hubiera antes (cargados por el admin manual).
+ */
+async function loadProductsFromSheets(showLoader = true) {
+  if (showLoader) showSheetsLoading();
+
+  try {
+    const url = buildSheetsUrl();
+    console.log('[Sheets] Fetching:', url);
+    const res = await fetch(url, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+    const text = await res.text();
+    console.log('[Sheets] Raw CSV (primeras 300 chars):', text.slice(0, 300));
+
+    const rows = parseCSV(text);
+    console.log('[Sheets] Filas parseadas:', rows.length);
+    if (rows.length) {
+      console.log('[Sheets] Cabeceras detectadas:', Object.keys(rows[0]));
+      console.log('[Sheets] Primera fila:', rows[0]);
+    }
+
+    if (!rows.length) {
+      console.warn('[Sheets] La hoja está vacía o sin cabeceras.');
+      showDiagnostic('La hoja parece vacía. Asegúrate de tener una fila de cabecera con: nombre, precio, categoria, imagen, destacado');
+      renderProducts();
+      return;
+    }
+
+    // Eliminar productos previos de Sheets
+    for (let i = PRODUCTS.length - 1; i >= 0; i--) {
+      if (PRODUCTS[i].fromSheets) PRODUCTS.splice(i, 1);
+    }
+
+    const newProds = rows.map((r, i) => rowToProduct(r, i)).filter(Boolean);
+    console.log('[Sheets] Productos válidos:', newProds.length);
+
+    if (newProds.length === 0 && rows.length > 0) {
+      const keys = Object.keys(rows[0]).join(', ');
+      console.warn('[Sheets] Cabeceras encontradas:', keys);
+      showDiagnostic(
+        'Se leyeron ' + rows.length + ' fila(s) pero ningún producto es válido.\n\n' +
+        'Cabeceras detectadas en tu hoja:\n' + Object.keys(rows[0]).map(k => '• ' + k).join('\n') + '\n\n' +
+        'Necesitas al menos las columnas: nombre, precio'
+      );
+    }
+
+    PRODUCTS.unshift(...newProds);
+    sheetsLoaded = true;
+    renderProducts();
+    renderAdmList();
+
+
+  } catch (err) {
+    console.error('[Sheets] Error:', err);
+    renderProducts();
+    if (showLoader) {
+      showToast('⚠️ No se pudo conectar con Google Sheets. Revisa que la hoja sea pública.');
+    }
+  }
+}
+
+function showDiagnostic(msg) {
+  const el = document.getElementById('sheets-diagnostic');
+  if (!el) return;
+  el.style.display = 'block';
+  el.querySelector('#sheets-diag-msg').textContent = msg;
+}
+
+/**
+ * Activa el refresco automático cada SHEETS_REFRESH_MS.
+ * Así, si añades una fila en Sheets, la tienda se actualiza sola.
+ */
+function startSheetsAutoRefresh() {
+  if (sheetsRefreshTimer) clearInterval(sheetsRefreshTimer);
+  sheetsRefreshTimer = setInterval(() => {
+    loadProductsFromSheets(false); // sin loader en refrescos silenciosos
+  }, SHEETS_REFRESH_MS);
+}
+
+/**
+ * Botón de recarga manual (se añade en el panel admin).
+ */
+function reloadFromSheets() {
+  showToast('⟳ Sincronizando con Google Sheets…');
+  loadProductsFromSheets(true);
+}
+
+// ══ INIT ══
+// ══ INIT ══
+document.addEventListener('DOMContentLoaded', function(){
+  // ── Imágenes fijas ──
+  setLogo('https://res.cloudinary.com/djudfepgz/image/upload/v1779708946/Logo_IBIMODA_2023-01_1_ttctgd_lrwi3m.jpg');
+
+  const fixedImgs = {
+    'img-hero-main':     'https://res.cloudinary.com/djudfepgz/image/upload/v1779708654/vestido_portada_tnsbwr.webp',
+    'img-cat-vestidos':  'https://res.cloudinary.com/djudfepgz/image/upload/v1779728347/vestido_rojo_eqvlfk.jpg',
+    'img-cat-trajes-m':  'https://res.cloudinary.com/djudfepgz/image/upload/v1779728151/traje_m_uosjnq.webp',
+    'img-cat-pantalones':'https://res.cloudinary.com/djudfepgz/image/upload/v1779728146/ChatGPT_Image_20_may_2026_16_21_26_cwgxkw.png',
+    'img-cat-trajes-h':  'https://res.cloudinary.com/djudfepgz/image/upload/v1779728160/bachch_crox6w.avif',
+    'img-cat-camisas':   'https://res.cloudinary.com/djudfepgz/image/upload/v1779728166/camisas_portada_qy95in.png',
+    'img-cat-chaquetas': 'https://res.cloudinary.com/djudfepgz/image/upload/v1779728177/Calzado_portada_ok_bl7edv.png',
+  };
+  Object.entries(fixedImgs).forEach(([id, url])=>{ const el=document.getElementById(id); if(el) el.src=url; });
+
+  if(typeof Stripe !== 'undefined' && typeof initStripe === 'function') initStripe();
+  buildReviews();
+  setTimeout(initCookieBanner, 300);
+  loadSavedData();
+  window.addEventListener('resize', updateRev);
+  const admInp = document.getElementById('adm-pass-inp');
+  if(admInp) admInp.addEventListener('keydown', e=>{
+    if(e.key==='Escape') document.getElementById('login-overlay').classList.remove('open');
+  });
+  const waLink = document.getElementById('wa-link');
+  if(waLink) waLink.href='https://wa.me/34655024049?text=Hola%20Ibimoda%20Ibiza%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n.';
+
+  // ── Stripe return check ──
+  checkStripeReturn();
+
+  // ── Google Sheets ──
+  loadProductsFromSheets(true);
+  startSheetsAutoRefresh();
+});
+document.getElementById('adm-pass-inp').addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('login-overlay').classList.remove('open');});
+document.getElementById('wa-link').href='https://wa.me/34655024049?text=Hola%20Ibimoda%20Ibiza%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n.';
+
+
+// ══ PRODUCT DETAIL MODAL ══
+let pmCurrentId = null;
+let pmSlideIdx  = 0;
+
+function openProdModal(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p) return;
+  pmCurrentId  = id;
+  pmSlideIdx   = 0;
+
+  // Info
+  document.getElementById('pm-brand').textContent = p.brand || '';
+  document.getElementById('pm-name').textContent  = p.name;
+  document.getElementById('pm-desc').textContent  = p.desc || '';
+  document.getElementById('pm-price').textContent = '€' + p.price;
+  const colorWrap = document.getElementById('pm-color-wrap');
+  const colorEl   = document.getElementById('pm-color');
+  if (colorWrap && colorEl) { if(p.color){colorEl.textContent=p.color;colorWrap.style.display='block';}else{colorWrap.style.display='none';} }
+  document.getElementById('pm-atc').textContent   = t('addToCart');
+
+  // Tallas
+  const tallasWrap = document.getElementById('pm-tallas-wrap');
+  const tallasSel  = document.getElementById('pm-tallas-sel');
+  if (p.tallas && p.tallas.length > 0) {
+    tallasSel.innerHTML = `<option value="">-- Selecciona talla --</option>` +
+      p.tallas.map(t => `<option value="${t}">${t}</option>`).join('');
+    tallasWrap.style.display = 'block';
+  } else {
+    tallasWrap.style.display = 'none';
+    tallasSel.innerHTML = '';
+  }
+
+  // Slides
+  const imgs   = (p.imgs && p.imgs.length) ? p.imgs : [p.img];
+  const slides = document.getElementById('pm-slides');
+  const dots   = document.getElementById('pm-dots');
+  const prev   = document.getElementById('pm-prev');
+  const next   = document.getElementById('pm-next');
+
+  slides.style.transform = 'translateX(0)';
+  slides.innerHTML = imgs.map(src =>
+    `<div style="min-width:100%;width:100%;height:580px;flex-shrink:0;background:#f8f5f0;overflow:hidden;display:flex;align-items:center;justify-content:center">
+       <img src="${src}" alt="${p.name}" style="width:100%;height:100%;object-fit:contain;display:block">
+     </div>`
+  ).join('');
+
+  dots.innerHTML = imgs.length > 1
+    ? imgs.map((_, i) => `<button onclick="pmGo(${i})" style="width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;background:${i===0?'#fff':'rgba(255,255,255,.4)'}"></button>`).join('')
+    : '';
+
+  prev.style.display = imgs.length > 1 ? 'flex' : 'none';
+  next.style.display = imgs.length > 1 ? 'flex' : 'none';
+
+  pmUpdateSlide();
+  document.getElementById('prod-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProdModal() {
+  document.getElementById('prod-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function pmMove(d) {
+  const slides = document.getElementById('pm-slides').children;
+  const total  = slides.length;
+  pmSlideIdx = (pmSlideIdx + d + total) % total;
+  pmUpdateSlide();
+}
+
+function pmGo(i) {
+  pmSlideIdx = i;
+  pmUpdateSlide();
+}
+
+function pmUpdateSlide() {
+  document.getElementById('pm-slides').style.transform = `translateX(-${pmSlideIdx * 100}%)`;
+  const dots = document.getElementById('pm-dots').children;
+  Array.from(dots).forEach((d, i) => {
+    d.style.background = i === pmSlideIdx ? '#fff' : 'rgba(255,255,255,.4)';
+  });
+}
+
+function pmAddToCart() {
+  if (!pmCurrentId) return;
+  const sel = document.getElementById('pm-tallas-sel');
+  if (sel && sel.style.display !== 'none' && sel.closest('#pm-tallas-wrap').style.display !== 'none' && !sel.value) {
+    showToast('⚠️ Selecciona una talla');
+    return;
+  }
+  const talla = sel ? sel.value : '';
+  addToCartWithTalla(pmCurrentId, talla);
+  closeProdModal();
+}
+
+// ══ COOKIES ══
+function initCookieBanner(){
+  try {
+    const consent = localStorage.getItem('ibimoda_cookies');
+    const banner  = document.getElementById('cookie-banner');
+    if(!banner) return;
+    if(!consent){ banner.style.display='flex'; }
+  } catch(e) {}
+}
+
+function acceptCookies(type){
+  try { localStorage.setItem('ibimoda_cookies', type); } catch(e) {}
+  const banner = document.getElementById('cookie-banner');
+  if(banner) banner.style.display='none';
+  closeCookieConfig();
+}
+
+function openCookieConfig(){
+  document.getElementById('cookie-config-modal').classList.add('open');
+}
+
+function closeCookieConfig(){
+  const m = document.getElementById('cookie-config-modal');
+  if(m) m.classList.remove('open');
+}
+
+function toggleSwitch(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.checked = !el.checked;
+  const swId = id.replace('ck-toggle-','ck-sw-');
+  const sw = document.getElementById(swId);
+  if(sw) sw.style.background = el.checked ? 'var(--terra)' : 'var(--border)';
+}
+
+function updateCookieBannerLang(){
+  // no-op — texts are static in HTML
+}
+
+function loadSavedData(){
+  // no-op — data is loaded fresh from Sheets each time
+}
+
+</script>
+</body>
+</html>
